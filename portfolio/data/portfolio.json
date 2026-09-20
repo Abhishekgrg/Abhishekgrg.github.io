@@ -30,22 +30,22 @@
     ]
   },
   "timeline": [
-    { "type": "education", "period": "2022 – 2024", "title": "Master of Commerce", "subtitle": "Business Administration & Management", "icon": "graduation-cap", "points": [] },
-    { "type": "education", "period": "2019 – 2022", "title": "Bachelor of Commerce", "subtitle": "Accounts & Business Statistics", "icon": "graduation-cap", "points": [] },
     { "type": "education", "period": "2018 – 2019", "title": "Commerce with Computer Science", "subtitle": "Higher Secondary Education", "icon": "graduation-cap", "points": [] },
-    { "type": "job", "period": "Aug 2023 – Present", "title": "NIIT Limited", "subtitle": "Senior AR/AP Coordinator", "logo": "niit", "icon": "briefcase", "points": [
-      "Billing & invoicing across multiple projects — 300+ invoices monthly with 100% accuracy/SLA",
-      "SOW management & vendor coordination — 50+ SOWs tracked, 100% compliance",
-      "Process improvements & discrepancy reduction — 25% fewer billing discrepancies",
-      "Client coordination for 20+ internal clients with 90%+ satisfaction",
-      "Turnaround reduction of 20% through workflow optimization"
-    ] },
+    { "type": "education", "period": "2019 – 2022", "title": "Bachelor of Commerce", "subtitle": "Accounts & Business Statistics", "icon": "graduation-cap", "points": [] },
+    { "type": "education", "period": "2022 – 2024", "title": "Master of Commerce", "subtitle": "Business Administration & Management", "icon": "graduation-cap", "points": [] },
     { "type": "job", "period": "Sep 2022 – Feb 2023", "title": "ICICI Bank", "subtitle": "Relationship Manager", "logo": "icici", "icon": "briefcase", "points": [
       "Client relationship management for 150+ customers",
       "Achieved 120% of monthly cross-selling target",
       "95%+ first-call query resolution and 90%+ CSAT",
       "Increased net banking/UPI usage by 20% among assigned customers",
       "Priority client handling and trained junior staff"
+    ] },
+    { "type": "job", "period": "Aug 2023 – Present", "title": "NIIT Limited", "subtitle": "Senior AR/AP Coordinator", "logo": "niit", "icon": "briefcase", "points": [
+      "Billing & invoicing across multiple projects — 300+ invoices monthly with 100% accuracy/SLA",
+      "SOW management & vendor coordination — 50+ SOWs tracked, 100% compliance",
+      "Process improvements & discrepancy reduction — 25% fewer billing discrepancies",
+      "Client coordination for 20+ internal clients with 90%+ satisfaction",
+      "Turnaround reduction of 20% through workflow optimization"
     ] }
   ],
   "certifications": [

@@ -83,26 +83,54 @@
     (for example <code>python -m http.server</code>) instead of opening the file directly.
   </div>
 
-  <!-- ================= TOP WEBSITE HEADER (brand + nav, scrolls away) ================= -->
-  <header class="site-header" id="site-header">
-    <div class="header-inner">
-      <a class="brand" href="#home" id="brand" aria-label="Abhishek Garg — home">
-        <span class="brand-mark" id="brand-mark">AG<span class="brand-dot">.</span></span>
-      </a>
+  <!-- ================= STICKY EXCEL RIBBON (the only top bar) ================= -->
+  <div class="ribbon" id="ribbon" role="toolbar" aria-label="Portfolio ribbon (visual Excel metaphor)">
+    <a class="ribbon-brand" href="#home" aria-label="Abhishek Garg — home">AG<span class="brand-dot">.</span></a>
+    <span class="ribbon-title" aria-hidden="true">Abhishek_Garg_Portfolio.xlsx</span>
 
-      <nav class="main-nav" aria-label="Primary">
-        <ul id="nav-links">
-          <li><a class="nav-link" href="#home">Home</a></li>
-          <li><a class="nav-link" href="#about">About</a></li>
-          <li><a class="nav-link" href="#experience">Experience</a></li>
-          <li><a class="nav-link" href="#projects">Projects</a></li>
-          <li><a class="nav-link" href="#skills">Skills</a></li>
-          <li><a class="nav-link" href="#achievements">Achievements</a></li>
-          <li><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+    <div class="ribbon-tabs">
+      <button class="ribbon-btn" type="button" data-ribbon="file">File</button>
+      <button class="ribbon-btn" type="button" data-ribbon="insert">Insert</button>
+      <button class="ribbon-btn" type="button" data-ribbon="formulas">Formulas</button>
+      <button class="ribbon-btn" type="button" data-ribbon="data">Data</button>
+      <button class="ribbon-btn" type="button" data-ribbon="review">Review</button>
+      <button class="ribbon-btn" type="button" data-ribbon="view">View</button>
     </div>
-  </header>
+
+    <span class="ribbon-divider" aria-hidden="true"></span>
+
+    <nav class="ribbon-nav" aria-label="Primary">
+      <a class="nav-link" href="#home">Home</a>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#experience">Experience</a>
+      <a class="nav-link" href="#projects">Projects</a>
+      <a class="nav-link" href="#skills">Skills</a>
+      <a class="nav-link" href="#achievements">Achievements</a>
+      <a class="nav-link" href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="search-wrap" id="search-wrap">
+        <button class="icon-btn search-toggle" id="search-toggle" type="button" aria-label="Search portfolio sections" aria-expanded="false">
+          <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+        </button>
+        <input type="search" id="search-input" class="search-input" placeholder="Search opportunities..." aria-label="Search portfolio sections" autocomplete="off" tabindex="-1">
+        <div id="search-results" class="search-results" hidden></div>
+      </div>
+      <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme">
+        <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"></use></svg>
+        <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"></use></svg>
+      </button>
+      <a class="cv-chip" data-cv-link href="cv/Abhishek_Garg_CV_Final.pdf" title="View CV (opens in a new tab)">CV</a>
+      <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>
+      </button>
+    </div>
+
+    <div class="ribbon-panel" id="ribbon-panel" hidden>
+      <div id="ribbon-panel-content"></div>
+    </div>
+  </div>
 
   <!-- ================= MOBILE MENU OVERLAY ================= -->
   <div class="mobile-menu" id="mobile-menu" hidden>
@@ -130,44 +158,6 @@
         <svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg>
         <span>View CV</span>
       </a>
-    </div>
-  </div>
-
-  <!-- ================= EXCEL RIBBON (the only sticky bar) ================= -->
-  <div class="ribbon" id="ribbon" role="toolbar" aria-label="Portfolio ribbon (visual Excel metaphor)">
-    <span class="ribbon-brand" aria-hidden="true">AG<span class="brand-dot">.</span></span>
-    <span class="ribbon-title" aria-hidden="true">Abhishek_Garg_Portfolio.xlsx</span>
-    <div class="ribbon-tabs">
-      <button class="ribbon-btn" type="button" data-ribbon="file">File</button>
-      <button class="ribbon-btn" type="button" data-ribbon="home">Home</button>
-      <button class="ribbon-btn" type="button" data-ribbon="insert">Insert</button>
-      <button class="ribbon-btn" type="button" data-ribbon="pagelayout" aria-pressed="false">Page Layout</button>
-      <button class="ribbon-btn" type="button" data-ribbon="formulas">Formulas</button>
-      <button class="ribbon-btn" type="button" data-ribbon="data">Data</button>
-      <button class="ribbon-btn" type="button" data-ribbon="review">Review</button>
-      <button class="ribbon-btn" type="button" data-ribbon="view">View</button>
-    </div>
-    <div class="header-actions">
-      <div class="search-wrap">
-        <svg class="icon search-icon" aria-hidden="true"><use href="#i-search"></use></svg>
-        <input type="search" id="search-input" placeholder="Search opportunities..." aria-label="Search portfolio sections" autocomplete="off">
-        <span class="kbd-hint" aria-hidden="true">Ctrl + K</span>
-        <div id="search-results" class="search-results" hidden></div>
-      </div>
-      <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme">
-        <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"></use></svg>
-        <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"></use></svg>
-      </button>
-      <a class="btn btn-ghost cv-btn" data-cv-link href="cv/Abhishek_Garg_CV_Final.pdf">
-        <svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg>
-        <span>View CV</span>
-      </a>
-      <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
-        <svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>
-      </button>
-    </div>
-    <div class="ribbon-panel" id="ribbon-panel" hidden>
-      <div id="ribbon-panel-content"></div>
     </div>
   </div>
 

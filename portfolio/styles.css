@@ -38,7 +38,6 @@
   --rail-w: 34px;
   --strip-h: 24px;
   --ribbon-h: 48px;
-  --header-h: 60px;
 }
 
 [data-theme="dark"] {
@@ -134,7 +133,7 @@ body.no-grid main::before { display: none; }
    3. Utilities
 ------------------------------------------------------------ */
 .container {
-  width: min(1180px, 100% - 48px);
+  width: min(1240px, 100% - 48px);
   margin-inline: auto;
 }
 
@@ -145,12 +144,12 @@ body.no-grid main::before { display: none; }
 }
 
 .section {
-  padding: 88px 0;
+  padding: 104px 0;
   scroll-margin-top: calc(var(--ribbon-h) + 22px);
   position: relative;
   z-index: 1;
 }
-body.compact .section { padding: 56px 0; }
+body.compact .section { padding: 64px 0; }
 
 .section-head {
   display: flex;
@@ -169,7 +168,7 @@ body.compact .section { padding: 56px 0; }
 .kicker-light { color: var(--gold-accent); }
 
 .section-title {
-  font-size: clamp(28px, 4vw, 40px);
+  font-size: clamp(30px, 3.6vw, 46px);
   line-height: 1.15;
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -276,23 +275,9 @@ body.compact .section { padding: 56px 0; }
 .flash { animation: flash-ring 0.9s var(--ease) 2; }
 
 /* ------------------------------------------------------------
-   4. Top website header (static — only the ribbon sticks)
+   4. (reserved — the sticky ribbon below is the only top bar)
 ------------------------------------------------------------ */
-.site-header {
-  border-bottom: 1px solid var(--border);
-  background: var(--bg);
-}
 
-.header-inner {
-  width: min(1280px, 100% - 32px);
-  margin-inline: auto;
-  height: var(--header-h);
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.brand { display: inline-flex; }
 .brand-mark {
   font-size: 22px;
   font-weight: 800;
@@ -301,91 +286,106 @@ body.compact .section { padding: 56px 0; }
 }
 .brand-dot { color: var(--gold-accent); }
 
-.main-nav { margin-left: auto; }
-.main-nav ul { display: flex; gap: 4px; }
+/* Section navigation living inside the green ribbon */
+.ribbon-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+}
 
 .nav-link {
   display: inline-flex;
   align-items: center;
-  padding: 8px 13px;
-  border-radius: 8px;
-  font-size: 14.5px;
+  padding: 6px 10px;
+  border-radius: 7px;
+  font-size: 13px;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: rgba(247, 243, 234, 0.88);
+  white-space: nowrap;
   transition: color 0.2s, background-color 0.2s;
-  min-height: 38px;
+  min-height: 36px;
 }
-.nav-link:hover { color: var(--excel-green); background: var(--soft-green); }
-.nav-link.active { color: var(--excel-green); font-weight: 600; position: relative; }
+.nav-link:hover { color: #fff; background: rgba(255, 255, 255, 0.12); }
+.nav-link.active { color: #fff; font-weight: 700; position: relative; }
 .nav-link.active::after {
   content: "";
   position: absolute;
-  left: 13px;
-  right: 13px;
+  left: 10px;
+  right: 10px;
   bottom: 2px;
   height: 2px;
   border-radius: 2px;
-  background: var(--excel-green);
+  background: var(--gold-accent);
 }
 
-.header-actions { display: flex; align-items: center; gap: 10px; margin-left: auto; flex: none; }
+.ribbon-divider {
+  width: 1px;
+  align-self: stretch;
+  margin: 10px 6px;
+  background: rgba(247, 243, 234, 0.28);
+  flex: none;
+}
 
-/* Controls living inside the green ribbon need light chrome */
+.header-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; flex: none; }
+
+/* Compact ribbon-styled controls */
 .ribbon .icon-btn {
-  border-color: rgba(247, 243, 234, 0.4);
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border-color: rgba(247, 243, 234, 0.35);
   color: #F7F3EA;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
 }
-.ribbon .icon-btn:hover { color: #fff; border-color: #F7F3EA; background: rgba(255, 255, 255, 0.16); }
+.ribbon .icon-btn:hover { color: #fff; border-color: rgba(247, 243, 234, 0.8); background: rgba(255, 255, 255, 0.18); }
 
-.ribbon .btn-ghost {
-  border-color: rgba(247, 243, 234, 0.4);
+.cv-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(247, 243, 234, 0.35);
+  background: rgba(255, 255, 255, 0.08);
   color: #F7F3EA;
-  background: transparent;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
-.ribbon .btn-ghost:hover { color: #fff; border-color: #F7F3EA; background: rgba(255, 255, 255, 0.12); }
+.cv-chip:hover { color: #fff; border-color: rgba(247, 243, 234, 0.8); background: rgba(255, 255, 255, 0.18); }
 
-.search-wrap { position: relative; }
-.search-icon {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  color: var(--muted);
-  pointer-events: none;
-}
-#search-input {
-  width: 210px;
-  min-height: 40px;
-  padding: 8px 76px 8px 34px;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  background: var(--surface);
-  color: var(--text-primary);
+/* Search: collapsed to an icon, expands on click */
+.search-wrap { position: relative; display: flex; align-items: center; }
+
+.search-input {
+  width: 0;
+  min-height: 34px;
+  padding: 0;
+  margin-left: 0;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #F7F3EA;
   font: inherit;
-  font-size: 14px;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-#search-input::placeholder { color: var(--muted); }
-#search-input:focus {
-  outline: none;
-  border-color: var(--excel-green);
-  box-shadow: 0 0 0 3px rgba(16, 124, 65, 0.15);
-}
-.kbd-hint {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 11px;
-  color: var(--muted);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 2px 6px;
-  pointer-events: none;
+  font-size: 13.5px;
+  opacity: 0;
+  overflow: hidden;
   white-space: nowrap;
+  transition: width 0.3s var(--ease), opacity 0.25s var(--ease),
+    padding 0.3s var(--ease), margin 0.3s var(--ease), border-color 0.2s;
+}
+.search-input::placeholder { color: rgba(247, 243, 234, 0.65); }
+.search-input:focus { outline: none; border-color: rgba(247, 243, 234, 0.8); }
+
+.search-wrap.open .search-input {
+  width: min(230px, 52vw);
+  padding: 6px 12px;
+  margin-left: 8px;
+  opacity: 1;
 }
 
 .search-results {
@@ -416,7 +416,6 @@ body.compact .section { padding: 56px 0; }
 .search-empty { padding: 12px; font-size: 13.5px; color: var(--text-secondary); }
 
 .menu-toggle { display: none; }
-.cv-btn span { display: inline; }
 
 /* ------------------------------------------------------------
    5. Mobile menu overlay
@@ -462,7 +461,7 @@ body.compact .section { padding: 56px 0; }
 }
 
 /* ------------------------------------------------------------
-   6. Excel ribbon — the only sticky bar, holds the header actions
+   6. Excel ribbon — the only sticky bar: brand | tabs | nav | actions
 ------------------------------------------------------------ */
 .ribbon {
   position: sticky;
@@ -471,37 +470,35 @@ body.compact .section { padding: 56px 0; }
   color: #F7F3EA;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 0 16px;
+  gap: 10px;
+  padding: 0 14px;
   min-height: var(--ribbon-h);
   z-index: 100;
 }
 
 .ribbon-brand {
-  display: none;
-  font-size: 18px;
+  display: inline-flex;
+  font-size: 19px;
   font-weight: 800;
   letter-spacing: -0.03em;
   color: #F7F3EA;
   white-space: nowrap;
+  flex: none;
 }
 
 .ribbon-title {
   font-family: "Cascadia Code", Consolas, "SF Mono", Menlo, monospace;
-  font-size: 12.5px;
-  opacity: 0.85;
+  font-size: 12px;
+  opacity: 0.8;
   white-space: nowrap;
+  display: none;
 }
 
 .ribbon-tabs {
   display: flex;
   align-items: stretch;
-  flex: 1 1 auto;
-  min-width: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
+  flex: none;
 }
-.ribbon-tabs::-webkit-scrollbar { display: none; }
 
 .ribbon-btn {
   position: relative;
@@ -720,15 +717,15 @@ body.compact .section { padding: 56px 0; }
   font-family: "Cascadia Code", Consolas, monospace;
 }
 
-main > .section:first-of-type { padding-top: calc(88px + var(--strip-h)); }
+main > .section:first-of-type { padding-top: calc(104px + var(--strip-h)); }
 
 /* Hide decorative chrome on smaller screens, in focus mode, or with gridlines off */
 @media (max-width: 1100px) {
   .col-strip, .row-rail, .grid-corner { display: none; }
-  main > .section:first-of-type { padding-top: 88px; }
+  main > .section:first-of-type { padding-top: 104px; }
 }
 body.focus-mode .col-strip, body.focus-mode .row-rail, body.focus-mode .grid-corner { display: none; }
-body.focus-mode main > .section:first-of-type { padding-top: 88px; }
+body.focus-mode main > .section:first-of-type { padding-top: 104px; }
 body.focus-mode .doodle, body.focus-mode .mini-chart { display: none; }
 body.no-grid .col-strip, body.no-grid .row-rail, body.no-grid .grid-corner { display: none; }
 
@@ -751,18 +748,18 @@ body.no-grid .col-strip, body.no-grid .row-rail, body.no-grid .grid-corner { dis
 }
 
 .hero-content h1 {
-  font-size: clamp(34px, 5vw, 56px);
-  line-height: 1.08;
+  font-size: clamp(36px, 4.6vw, 64px);
+  line-height: 1.06;
   font-weight: 800;
   letter-spacing: -0.03em;
 }
 .hero-name { color: var(--excel-green); }
 
 .hero-desc {
-  margin-top: 20px;
-  font-size: 18px;
+  margin-top: 22px;
+  font-size: 19px;
   color: var(--text-secondary);
-  max-width: 52ch;
+  max-width: 54ch;
 }
 
 .hero-meta {
@@ -815,10 +812,11 @@ body.no-grid .col-strip, body.no-grid .row-rail, body.no-grid .grid-corner { dis
 }
 
 #profile-img {
-  width: 150px;
-  height: 150px;
+  width: 210px;
+  height: 210px;
   object-fit: cover;
-  border-radius: 18px;
+  object-position: center 20%;
+  border-radius: 22px;
   border: 3px solid var(--surface);
   box-shadow: var(--shadow-md);
   background: var(--soft-green);
@@ -932,7 +930,7 @@ body.no-grid .col-strip, body.no-grid .row-rail, body.no-grid .grid-corner { dis
 }
 
 .kpi-value {
-  font-size: 34px;
+  font-size: 40px;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--excel-green);
@@ -940,7 +938,7 @@ body.no-grid .col-strip, body.no-grid .row-rail, body.no-grid .grid-corner { dis
   line-height: 1.1;
 }
 
-.kpi-label { margin-top: 4px; font-size: 13.5px; color: var(--text-secondary); }
+.kpi-label { margin-top: 6px; font-size: 14px; color: var(--text-secondary); }
 
 /* ------------------------------------------------------------
    10. About
@@ -1460,39 +1458,41 @@ body.no-grid .col-strip, body.no-grid .row-rail, body.no-grid .grid-corner { dis
 /* ------------------------------------------------------------
    18. Responsive
 ------------------------------------------------------------ */
-@media (max-width: 1200px) {
-  .kbd-hint { display: none; }
-  #search-input { width: 170px; }
+/* Keep the sheet grid clear of the row rail on mid-wide screens */
+@media (min-width: 1101px) and (max-width: 1330px) {
+  main .container {
+    width: min(1240px, 100% - 48px - var(--rail-w));
+    margin-left: calc(var(--rail-w) + 24px);
+    margin-right: 24px;
+  }
 }
-@media (max-width: 1150px) {
+
+@media (max-width: 1360px) {
   .ribbon-title { display: none; }
 }
 
 @media (max-width: 1024px) {
-  .main-nav { display: none; }
+  .ribbon-nav { display: none; }
   .menu-toggle { display: inline-flex; }
-  .hero-grid { grid-template-columns: 1fr; gap: 36px; }
-  .hero-aside { align-items: flex-start; }
   .about-cards { grid-template-columns: repeat(2, 1fr); }
   .kpi-grid { grid-template-columns: repeat(2, 1fr); }
   .tools-grid { grid-template-columns: repeat(2, 1fr); }
+  #profile-img { width: 170px; height: 170px; }
   .doodle-hero { right: 12px; top: -78px; }
 }
 
 @media (max-width: 860px) {
   .section-head { flex-direction: column; align-items: flex-start; }
   .projects-grid, .achievements-grid { grid-template-columns: 1fr; }
-  .cv-btn span { display: none; }
-  .cv-btn { padding: 7px 11px; }
 }
 
 @media (max-width: 767px) {
-  .container { width: min(1180px, 100% - 32px); }
+  .container { width: min(1240px, 100% - 32px); }
 
-  /* Mobile top chrome = the ribbon only: AG. | tabs | Theme | CV | Menu */
-  .site-header { display: none; }
-  .ribbon-brand { display: inline-flex; }
-  .search-wrap { display: none; }
+  /* Clean mobile ribbon: AG. | search | theme | CV | menu (tabs + nav live in the menu) */
+  .ribbon { gap: 8px; }
+  .ribbon-tabs, .ribbon-divider { display: none; }
+  .search-wrap.open .search-input { width: min(190px, 46vw); }
 
   body { padding-bottom: 66px; }
   .bottom-nav { display: flex; }
@@ -1529,15 +1529,13 @@ body.no-grid .col-strip, body.no-grid .row-rail, body.no-grid .grid-corner { dis
 }
 
 @media (max-width: 380px) {
-  #search-input { width: 130px; }
   .hero-content h1 { font-size: 28px; }
   .kpi-grid { grid-template-columns: 1fr 1fr; }
-  .brand-mark { font-size: 19px; }
+  .ribbon-brand { font-size: 17px; }
 }
 
 /* Very small screens (320px) */
 @media (max-width: 340px) {
-  #search-input { display: none; }
   .hero-content h1 { font-size: 26px; }
 }
 
@@ -1558,7 +1556,7 @@ body.no-grid .col-strip, body.no-grid .row-rail, body.no-grid .grid-corner { dis
    20. Print-friendly tweaks
 ------------------------------------------------------------ */
 @media print {
-  .site-header, .ribbon, .formula-bar, .bottom-nav, .col-strip, .row-rail,
+  .ribbon, .formula-bar, .bottom-nav, .col-strip, .row-rail,
   .doodle, .search-wrap, .theme-toggle, .menu-toggle, .sheet-tabs-bar { display: none !important; }
   body::before { display: none; }
   body { background: #fff; color: #111; }

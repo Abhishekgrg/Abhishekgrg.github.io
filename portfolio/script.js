@@ -101,10 +101,6 @@
     if (loc) { loc.textContent = p.location; }
     var avail = $('#meta-availability-text');
     if (avail) { avail.textContent = p.availability; }
-    var brand = $('#brand-mark');
-    if (brand) {
-      brand.innerHTML = esc(p.initials.replace(/\./g, '')) + '<span class="brand-dot">.</span>';
-    }
     var statusCompany = $('#status-company');
     if (statusCompany) { statusCompany.textContent = 'Currently at ' + p.company; }
     var statusLoc = $('#status-location');
@@ -439,7 +435,7 @@
     file: function () {
       return '' +
         '<p class="panel-title">' + icon('file-text') + 'File</p>' +
-        '<a class="panel-action" data-cv-link href="' + SITE_CONFIG.cvPath + '">' + icon('eye') + 'View CV</a>' +
+        '<a class="panel-action" href="' + SITE_CONFIG.cvPath + '" download>' + icon('download') + 'Download CV</a>' +
         '<a class="panel-action" href="mailto:' + SITE_CONFIG.email + '">' + icon('mail') + 'Email Abhishek</a>' +
         '<button class="panel-action" type="button" data-panel-go="#home">' + icon('home') + 'Back to top</button>';
     },
@@ -580,16 +576,49 @@
     goToSection(r.hash, true);
   }
 
+  function openSearch() {
+    var wrap = $('#search-wrap');
+    var input = $('#search-input');
+    var toggle = $('#search-toggle');
+    if (!wrap || !input) { return; }
+    wrap.classList.add('open');
+    if (toggle) { toggle.setAttribute('aria-expanded', 'true'); }
+    input.removeAttribute('tabindex');
+    input.focus();
+  }
+
   function closeSearch() {
     var box = $('#search-results');
+    var wrap = $('#search-wrap');
+    var input = $('#search-input');
+    var toggle = $('#search-toggle');
     if (box) { box.hidden = true; }
     searchActive = -1;
+    if (wrap) {
+      wrap.classList.remove('open');
+      if (toggle) { toggle.setAttribute('aria-expanded', 'false'); }
+      if (input) { input.setAttribute('tabindex', '-1'); }
+    }
   }
 
   function initSearch() {
     var input = $('#search-input');
     var box = $('#search-results');
+    var toggle = $('#search-toggle');
     if (!input || !box) { return; }
+    if (toggle) {
+      toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var wrap = $('#search-wrap');
+        if (wrap && wrap.classList.contains('open') && !input.value.trim()) {
+          closeSearch();
+        } else if (wrap && wrap.classList.contains('open')) {
+          closeSearch();
+        } else {
+          openSearch();
+        }
+      });
+    }
     input.addEventListener('input', function () { runSearch(input.value); });
     input.addEventListener('focus', function () { if (input.value.trim()) { runSearch(input.value); } });
     input.addEventListener('keydown', function (e) {
@@ -613,7 +642,7 @@
     document.addEventListener('keydown', function (e) {
       if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
         e.preventDefault();
-        input.focus();
+        openSearch();
         input.select();
       }
     });
