@@ -813,8 +813,8 @@
 
     /* Spring physics: the highlight chases the target cell with a slight
        overshoot, plus a subtle velocity-based motion blur */
-    var SPRING_K = 220;      // stiffness
-    var SPRING_C = 16;       // damping (underdamped -> small overshoot)
+    var SPRING_K = 320;      // stiffness
+    var SPRING_C = 24;       // damping (underdamped -> small overshoot)
     var pos = { x: 0, y: 0 };
     var vel = { x: 0, y: 0 };
     var target = { x: 0, y: 0 };
@@ -837,7 +837,7 @@
       var speed = Math.hypot(vel.x, vel.y);
       cell.style.transform = 'translate3d(' + pos.x + 'px,' + pos.y + 'px,0)';
       if (!reduceMotion && speed > 40) {
-        cell.style.filter = 'blur(' + Math.min(speed * 0.006, 2.5).toFixed(2) + 'px)';
+        cell.style.filter = 'blur(' + Math.min(speed * 0.00125, 2.5).toFixed(2) + 'px)';
       } else {
         cell.style.filter = '';
       }
