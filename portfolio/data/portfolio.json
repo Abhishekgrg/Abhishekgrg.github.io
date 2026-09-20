@@ -30,9 +30,9 @@
     ]
   },
   "timeline": [
-    { "type": "education", "period": "2018 – 2019", "title": "Commerce with Computer Science", "subtitle": "Higher Secondary Education", "icon": "graduation-cap", "points": [] },
-    { "type": "education", "period": "2019 – 2022", "title": "Bachelor of Commerce", "subtitle": "Accounts & Business Statistics", "icon": "graduation-cap", "points": [] },
-    { "type": "education", "period": "2022 – 2024", "title": "Master of Commerce", "subtitle": "Business Administration & Management", "icon": "graduation-cap", "points": [] },
+    { "type": "education", "period": "2018 – 2019", "title": "Commerce with Computer Science", "subtitle": "Higher Secondary Education","logo": "CBSE", "icon": "graduation-cap", "points": [] },
+    { "type": "education", "period": "2019 – 2022", "title": "Bachelor of Commerce", "subtitle": "Accounts & Business Statistics","logo": "MGSU", "icon": "graduation-cap", "points": [] },
+    { "type": "education", "period": "2022 – 2024", "title": "Master of Commerce", "subtitle": "Business Administration & Management","logo": "MGSU", "icon": "graduation-cap", "points": [] },
     { "type": "job", "period": "Sep 2022 – Feb 2023", "title": "ICICI Bank", "subtitle": "Relationship Manager", "logo": "icici", "icon": "briefcase", "points": [
       "Client relationship management for 150+ customers",
       "Achieved 120% of monthly cross-selling target",

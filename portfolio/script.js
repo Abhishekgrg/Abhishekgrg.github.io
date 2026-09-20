@@ -10,7 +10,7 @@
      Site configuration — edit here
   ------------------------------------------------------------ */
   var SITE_CONFIG = {
-    linkedinUrl: '', // add your LinkedIn profile URL here, e.g. "https://www.linkedin.com/in/..."
+    linkedinUrl: 'https://in.linkedin.com/in/abhishek-garg2303',
     email: 'abrgarg0302@gmail.com',
     phone: '+91 7014850962',
     cvPath: 'cv/Abhishek_Garg_CV_Final.pdf',
