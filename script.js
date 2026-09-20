@@ -811,6 +811,67 @@
       };
     }
 
+    /* Spring physics: the highlight chases the target cell with a slight
+       overshoot, plus a subtle velocity-based motion blur */
+    var SPRING_K = 220;      // stiffness
+    var SPRING_C = 16;       // damping (underdamped -> small overshoot)
+    var pos = { x: 0, y: 0 };
+    var vel = { x: 0, y: 0 };
+    var target = { x: 0, y: 0 };
+    var started = false;
+    var springFrame = 0;
+    var lastT = 0;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function metrics() {
+      var cs = getComputedStyle(document.documentElement);
+      return {
+        col: parseFloat(cs.getPropertyValue('--col-w')) || 100,
+        row: parseFloat(cs.getPropertyValue('--row-h')) || 28,
+        rail: parseFloat(cs.getPropertyValue('--rail-w')) || 34,
+        strip: parseFloat(cs.getPropertyValue('--strip-h')) || 24
+      };
+    }
+
+    function render() {
+      var speed = Math.hypot(vel.x, vel.y);
+      cell.style.transform = 'translate3d(' + pos.x + 'px,' + pos.y + 'px,0)';
+      if (!reduceMotion && speed > 40) {
+        cell.style.filter = 'blur(' + Math.min(speed * 0.006, 2.5).toFixed(2) + 'px)';
+      } else {
+        cell.style.filter = '';
+      }
+    }
+
+    function springLoop(t) {
+      var dt = Math.min((t - lastT) / 1000, 1 / 30) || 1 / 60;
+      lastT = t;
+      var ax = (target.x - pos.x) * SPRING_K - vel.x * SPRING_C;
+      var ay = (target.y - pos.y) * SPRING_K - vel.y * SPRING_C;
+      vel.x += ax * dt;
+      vel.y += ay * dt;
+      pos.x += vel.x * dt;
+      pos.y += vel.y * dt;
+      render();
+      if (Math.abs(target.x - pos.x) < 0.4 && Math.abs(target.y - pos.y) < 0.4 &&
+          Math.abs(vel.x) < 8 && Math.abs(vel.y) < 8) {
+        pos.x = target.x;
+        pos.y = target.y;
+        vel.x = vel.y = 0;
+        render();
+        springFrame = 0;
+        return;
+      }
+      springFrame = window.requestAnimationFrame(springLoop);
+    }
+
+    function kick() {
+      if (!springFrame) {
+        lastT = window.performance.now();
+        springFrame = window.requestAnimationFrame(springLoop);
+      }
+    }
+
     var frame = 0;
     var lastEvent = null;
 
@@ -832,9 +893,23 @@
         cell.classList.remove('on');
         return;
       }
-      cell.style.left = (m.rail + col * m.col) + 'px';
-      cell.style.top = (m.strip + row * m.row) + 'px';
+      target.x = m.rail + col * m.col;
+      target.y = m.strip + row * m.row;
+      if (!started) {
+        // first appearance: start at the cell instead of flying in from 0,0
+        pos.x = target.x;
+        pos.y = target.y;
+        started = true;
+      }
       cell.classList.add('on');
+      if (reduceMotion) {
+        pos.x = target.x;
+        pos.y = target.y;
+        vel.x = vel.y = 0;
+        render();
+      } else {
+        kick();
+      }
     }
 
     window.addEventListener('mousemove', function (e) {

@@ -757,6 +757,8 @@ body.no-grid .col-strip, body.no-grid .row-rail, body.no-grid .grid-corner { dis
 
   .cell-cursor {
     position: absolute;
+    left: 0;
+    top: 0;
     width: var(--col-w);
     height: var(--row-h);
     border: 2px solid var(--deep-green);
@@ -766,6 +768,7 @@ body.no-grid .col-strip, body.no-grid .row-rail, body.no-grid .grid-corner { dis
     pointer-events: none;
     z-index: 0;
     opacity: 0;
+    will-change: transform, filter;
     transition: opacity 0.15s ease;
   }
   .cell-cursor.on { opacity: 1; }
