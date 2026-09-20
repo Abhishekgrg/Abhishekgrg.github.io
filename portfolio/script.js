@@ -202,7 +202,7 @@
         parts.push('<path class="wf-arrow-head" d="M' + (ax + gap - 12) + ' ' + (ay - 5) + ' l7 5 l-7 5"/>');
       }
     });
-    return '<svg class="wf-diagram" viewBox="0 0 760 112" role="img" aria-label="Workflow: Input, Validation, Billing, Review, Invoice">' + parts.join('') + '</svg>';
+    return '<svg class="wf-diagram" viewBox="0 0 832 112" role="img" aria-label="Workflow: Input, Validation, Billing, Review, Invoice">' + parts.join('') + '</svg>';
   }
 
   function renderProjects() {
@@ -297,7 +297,8 @@
     var email = SITE_CONFIG.email;
     $all('[data-cv-link]').forEach(function (a) {
       a.setAttribute('href', SITE_CONFIG.cvPath);
-      a.setAttribute('download', '');
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
     });
     var btnEmail = $('#btn-email');
     if (btnEmail) { btnEmail.setAttribute('href', 'mailto:' + email); }
@@ -438,7 +439,7 @@
     file: function () {
       return '' +
         '<p class="panel-title">' + icon('file-text') + 'File</p>' +
-        '<a class="panel-action" data-cv-link href="' + SITE_CONFIG.cvPath + '">' + icon('download') + 'Download CV</a>' +
+        '<a class="panel-action" data-cv-link href="' + SITE_CONFIG.cvPath + '">' + icon('eye') + 'View CV</a>' +
         '<a class="panel-action" href="mailto:' + SITE_CONFIG.email + '">' + icon('mail') + 'Email Abhishek</a>' +
         '<button class="panel-action" type="button" data-panel-go="#home">' + icon('home') + 'Back to top</button>';
     },
@@ -448,7 +449,7 @@
         '<button class="panel-action" type="button" data-panel-go="#home">' + icon('home') + 'Go to hero</button>' +
         '<button class="panel-action" type="button" data-panel-go="#projects">' + icon('folder') + 'Open projects</button>' +
         '<button class="panel-action" type="button" data-panel-go="#achievements">' + icon('trophy') + 'View achievements</button>' +
-        '<a class="panel-action" data-cv-link href="' + SITE_CONFIG.cvPath + '">' + icon('download') + 'Download CV</a>';
+        '<a class="panel-action" data-cv-link href="' + SITE_CONFIG.cvPath + '">' + icon('eye') + 'View CV</a>';
     },
     formulas: function () {
       return '' +
@@ -713,21 +714,46 @@
   }
 
   /* ------------------------------------------------------------
-     Decorative grid rails
+     Decorative grid rails — sized to the real page, Excel-style
   ------------------------------------------------------------ */
-  function initGridRails() {
+  var RAIL_COL_W = 100;
+  var RAIL_ROW_H = 28;
+
+  function colName(i) {
+    var name = '';
+    var n = i + 1;
+    while (n > 0) {
+      var rem = (n - 1) % 26;
+      name = String.fromCharCode(65 + rem) + name;
+      n = Math.floor((n - 1) / 26);
+    }
+    return name;
+  }
+
+  function buildGridRails() {
     var strip = $('#col-strip');
     if (strip) {
+      var cols = Math.ceil(window.innerWidth / RAIL_COL_W) + 2;
       var letters = '';
-      for (var i = 0; i < COLS.length; i++) { letters += '<span>' + COLS[i] + '</span>'; }
+      for (var i = 0; i < cols; i++) { letters += '<span>' + colName(i) + '</span>'; }
       strip.innerHTML = letters;
     }
     var rail = $('#row-rail');
     if (rail) {
+      var rowCount = Math.ceil(document.documentElement.scrollHeight / RAIL_ROW_H) + 4;
       var rows = '';
-      for (var r = 1; r <= 40; r++) { rows += '<span>' + r + '</span>'; }
+      for (var r = 1; r <= rowCount; r++) { rows += '<span>' + r + '</span>'; }
       rail.innerHTML = rows;
     }
+  }
+
+  function initGridRails() {
+    buildGridRails();
+    var t = null;
+    window.addEventListener('resize', function () {
+      window.clearTimeout(t);
+      t = window.setTimeout(buildGridRails, 200);
+    });
   }
 
   /* ------------------------------------------------------------

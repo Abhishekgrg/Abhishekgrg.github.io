@@ -33,8 +33,12 @@
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --radius: 12px;
-  --cell: 96px;
-  --header-h: 64px;
+  --col-w: 100px;
+  --row-h: 28px;
+  --rail-w: 34px;
+  --strip-h: 24px;
+  --ribbon-h: 48px;
+  --header-h: 60px;
 }
 
 [data-theme="dark"] {
@@ -108,20 +112,23 @@ h1, h2, h3, p { margin: 0; }
 }
 .skip-link:focus { left: 8px; }
 
-/* Spreadsheet gridlines behind everything */
-body::before {
+/* Spreadsheet gridlines: real intersecting rectangles aligned with the
+   column strip (100px wide) and row rail (28px tall), anchored to <main> */
+main { position: relative; }
+main::before {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   background-image:
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: var(--cell) var(--cell);
-  opacity: 0.55;
+  background-size: var(--col-w) var(--row-h);
+  background-position: var(--rail-w) var(--strip-h);
+  opacity: 0.6;
 }
-body.no-grid::before { display: none; }
+body.no-grid main::before { display: none; }
 
 /* ------------------------------------------------------------
    3. Utilities
@@ -139,8 +146,9 @@ body.no-grid::before { display: none; }
 
 .section {
   padding: 88px 0;
-  scroll-margin-top: calc(var(--header-h) + 28px);
+  scroll-margin-top: calc(var(--ribbon-h) + 22px);
   position: relative;
+  z-index: 1;
 }
 body.compact .section { padding: 56px 0; }
 
@@ -268,16 +276,11 @@ body.compact .section { padding: 56px 0; }
 .flash { animation: flash-ring 0.9s var(--ease) 2; }
 
 /* ------------------------------------------------------------
-   4. Top website header
+   4. Top website header (static — only the ribbon sticks)
 ------------------------------------------------------------ */
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 70;
-  background: var(--header-bg);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
+  background: var(--bg);
 }
 
 .header-inner {
@@ -298,7 +301,7 @@ body.compact .section { padding: 56px 0; }
 }
 .brand-dot { color: var(--gold-accent); }
 
-.main-nav { margin-inline: auto; }
+.main-nav { margin-left: auto; }
 .main-nav ul { display: flex; gap: 4px; }
 
 .nav-link {
@@ -325,7 +328,22 @@ body.compact .section { padding: 56px 0; }
   background: var(--excel-green);
 }
 
-.header-actions { display: flex; align-items: center; gap: 10px; }
+.header-actions { display: flex; align-items: center; gap: 10px; margin-left: auto; flex: none; }
+
+/* Controls living inside the green ribbon need light chrome */
+.ribbon .icon-btn {
+  border-color: rgba(247, 243, 234, 0.4);
+  color: #F7F3EA;
+  background: rgba(255, 255, 255, 0.06);
+}
+.ribbon .icon-btn:hover { color: #fff; border-color: #F7F3EA; background: rgba(255, 255, 255, 0.16); }
+
+.ribbon .btn-ghost {
+  border-color: rgba(247, 243, 234, 0.4);
+  color: #F7F3EA;
+  background: transparent;
+}
+.ribbon .btn-ghost:hover { color: #fff; border-color: #F7F3EA; background: rgba(255, 255, 255, 0.12); }
 
 .search-wrap { position: relative; }
 .search-icon {
@@ -380,7 +398,7 @@ body.compact .section { padding: 56px 0; }
   border-radius: 12px;
   box-shadow: var(--shadow-lg);
   padding: 6px;
-  z-index: 90;
+  z-index: 130;
 }
 .search-result {
   display: flex;
@@ -444,18 +462,28 @@ body.compact .section { padding: 56px 0; }
 }
 
 /* ------------------------------------------------------------
-   6. Excel ribbon
+   6. Excel ribbon — the only sticky bar, holds the header actions
 ------------------------------------------------------------ */
 .ribbon {
-  position: relative;
+  position: sticky;
+  top: 0;
   background: linear-gradient(180deg, var(--excel-green), var(--deep-green));
   color: #F7F3EA;
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 12px;
   padding: 0 16px;
-  min-height: 44px;
-  z-index: 60;
+  min-height: var(--ribbon-h);
+  z-index: 100;
+}
+
+.ribbon-brand {
+  display: none;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #F7F3EA;
+  white-space: nowrap;
 }
 
 .ribbon-title {
@@ -465,7 +493,15 @@ body.compact .section { padding: 56px 0; }
   white-space: nowrap;
 }
 
-.ribbon-tabs { display: flex; align-items: stretch; }
+.ribbon-tabs {
+  display: flex;
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.ribbon-tabs::-webkit-scrollbar { display: none; }
 
 .ribbon-btn {
   position: relative;
@@ -621,68 +657,80 @@ body.compact .section { padding: 56px 0; }
   text-overflow: ellipsis;
 }
 
-/* Column letters strip */
-.col-strip {
+/* Corner cell where the column strip and row rail meet (Excel select-all box) */
+.grid-corner {
   position: absolute;
   top: 0;
   left: 0;
+  width: var(--rail-w);
+  height: var(--strip-h);
+  background: var(--surface-2);
+  border-right: 1px solid var(--grid-line);
+  border-bottom: 1px solid var(--grid-line);
+  z-index: 2;
+}
+
+/* Column letters strip — top of <main>, starts right of the corner cell */
+.col-strip {
+  position: absolute;
+  top: 0;
+  left: var(--rail-w);
   right: 0;
-  height: 24px;
+  height: var(--strip-h);
   display: flex;
-  justify-content: center;
   overflow: hidden;
   border-bottom: 1px solid var(--grid-line);
   background: var(--surface-2);
-  z-index: 1;
+  z-index: 2;
 }
 .col-strip span {
-  width: var(--cell);
+  width: var(--col-w);
   flex: none;
   text-align: center;
   font-size: 11px;
-  line-height: 24px;
+  line-height: var(--strip-h);
   color: var(--muted);
   border-left: 1px solid var(--grid-line);
   font-family: "Cascadia Code", Consolas, monospace;
 }
 
-/* Row numbers rail */
+/* Row numbers rail — left of <main>, starts below the corner cell */
 .row-rail {
   position: absolute;
-  top: 24px;
+  top: var(--strip-h);
   bottom: 0;
   left: 0;
-  width: 34px;
+  width: var(--rail-w);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   border-right: 1px solid var(--grid-line);
   background: var(--surface-2);
-  z-index: 1;
+  z-index: 2;
 }
 .row-rail span {
-  height: var(--cell);
+  height: var(--row-h);
   flex: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 10px;
   color: var(--muted);
   border-bottom: 1px solid var(--grid-line);
   font-family: "Cascadia Code", Consolas, monospace;
 }
 
-main { position: relative; }
-main > .section:first-of-type { padding-top: calc(88px + 24px); }
+main > .section:first-of-type { padding-top: calc(88px + var(--strip-h)); }
 
-/* Hide decorative chrome on smaller screens or in focus mode */
+/* Hide decorative chrome on smaller screens, in focus mode, or with gridlines off */
 @media (max-width: 1100px) {
-  .col-strip, .row-rail { display: none; }
+  .col-strip, .row-rail, .grid-corner { display: none; }
   main > .section:first-of-type { padding-top: 88px; }
 }
-body.focus-mode .col-strip, body.focus-mode .row-rail { display: none; }
+body.focus-mode .col-strip, body.focus-mode .row-rail, body.focus-mode .grid-corner { display: none; }
 body.focus-mode main > .section:first-of-type { padding-top: 88px; }
 body.focus-mode .doodle, body.focus-mode .mini-chart { display: none; }
+body.no-grid .col-strip, body.no-grid .row-rail, body.no-grid .grid-corner { display: none; }
 
 /* ------------------------------------------------------------
    8. Hero
@@ -1273,7 +1321,6 @@ body.focus-mode .doodle, body.focus-mode .mini-chart { display: none; }
     radial-gradient(1200px 400px at 85% -10%, rgba(215, 168, 75, 0.12), transparent 60%),
     linear-gradient(160deg, var(--deep-green), var(--dark-green));
   color: #F7F3EA;
-  scroll-margin-top: calc(var(--header-h) + 28px);
 }
 
 .contact-body {
@@ -1417,6 +1464,9 @@ body.focus-mode .doodle, body.focus-mode .mini-chart { display: none; }
   .kbd-hint { display: none; }
   #search-input { width: 170px; }
 }
+@media (max-width: 1150px) {
+  .ribbon-title { display: none; }
+}
 
 @media (max-width: 1024px) {
   .main-nav { display: none; }
@@ -1434,13 +1484,14 @@ body.focus-mode .doodle, body.focus-mode .mini-chart { display: none; }
   .projects-grid, .achievements-grid { grid-template-columns: 1fr; }
   .cv-btn span { display: none; }
   .cv-btn { padding: 7px 11px; }
-  .ribbon-title { display: none; }
 }
 
 @media (max-width: 767px) {
   .container { width: min(1180px, 100% - 32px); }
 
-  /* Spec mobile header: AG. | Theme | CV | Menu — the search lives in the menu overlay */
+  /* Mobile top chrome = the ribbon only: AG. | tabs | Theme | CV | Menu */
+  .site-header { display: none; }
+  .ribbon-brand { display: inline-flex; }
   .search-wrap { display: none; }
 
   body { padding-bottom: 66px; }
@@ -1475,8 +1526,6 @@ body.focus-mode .doodle, body.focus-mode .mini-chart { display: none; }
   .tl-marker { width: 38px; height: 38px; left: 2px; }
   .timeline::before { left: 20px; }
   .contact-actions .btn { width: 100%; }
-  .ribbon { overflow-x: auto; scrollbar-width: none; }
-  .ribbon::-webkit-scrollbar { display: none; }
 }
 
 @media (max-width: 380px) {

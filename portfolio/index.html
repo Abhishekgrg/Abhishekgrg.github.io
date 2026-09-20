@@ -83,7 +83,7 @@
     (for example <code>python -m http.server</code>) instead of opening the file directly.
   </div>
 
-  <!-- ================= TOP WEBSITE HEADER ================= -->
+  <!-- ================= TOP WEBSITE HEADER (brand + nav, scrolls away) ================= -->
   <header class="site-header" id="site-header">
     <div class="header-inner">
       <a class="brand" href="#home" id="brand" aria-label="Abhishek Garg — home">
@@ -101,26 +101,6 @@
           <li><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
       </nav>
-
-      <div class="header-actions">
-        <div class="search-wrap">
-          <svg class="icon search-icon" aria-hidden="true"><use href="#i-search"></use></svg>
-          <input type="search" id="search-input" placeholder="Search opportunities..." aria-label="Search portfolio sections" autocomplete="off">
-          <span class="kbd-hint" aria-hidden="true">Ctrl + K</span>
-          <div id="search-results" class="search-results" hidden></div>
-        </div>
-        <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme">
-          <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"></use></svg>
-          <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"></use></svg>
-        </button>
-        <a class="btn btn-ghost cv-btn" data-cv-link href="cv/Abhishek_Garg_CV_Final.pdf">
-          <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
-          <span>Download CV</span>
-        </a>
-        <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
-          <svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>
-        </button>
-      </div>
     </div>
   </header>
 
@@ -147,14 +127,15 @@
         <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"></use></svg>
       </button>
       <a class="btn btn-ghost" data-cv-link href="cv/Abhishek_Garg_CV_Final.pdf">
-        <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
-        <span>Download CV</span>
+        <svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg>
+        <span>View CV</span>
       </a>
     </div>
   </div>
 
-  <!-- ================= EXCEL RIBBON ================= -->
+  <!-- ================= EXCEL RIBBON (the only sticky bar) ================= -->
   <div class="ribbon" id="ribbon" role="toolbar" aria-label="Portfolio ribbon (visual Excel metaphor)">
+    <span class="ribbon-brand" aria-hidden="true">AG<span class="brand-dot">.</span></span>
     <span class="ribbon-title" aria-hidden="true">Abhishek_Garg_Portfolio.xlsx</span>
     <div class="ribbon-tabs">
       <button class="ribbon-btn" type="button" data-ribbon="file">File</button>
@@ -165,6 +146,25 @@
       <button class="ribbon-btn" type="button" data-ribbon="data">Data</button>
       <button class="ribbon-btn" type="button" data-ribbon="review">Review</button>
       <button class="ribbon-btn" type="button" data-ribbon="view">View</button>
+    </div>
+    <div class="header-actions">
+      <div class="search-wrap">
+        <svg class="icon search-icon" aria-hidden="true"><use href="#i-search"></use></svg>
+        <input type="search" id="search-input" placeholder="Search opportunities..." aria-label="Search portfolio sections" autocomplete="off">
+        <span class="kbd-hint" aria-hidden="true">Ctrl + K</span>
+        <div id="search-results" class="search-results" hidden></div>
+      </div>
+      <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme">
+        <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"></use></svg>
+        <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"></use></svg>
+      </button>
+      <a class="btn btn-ghost cv-btn" data-cv-link href="cv/Abhishek_Garg_CV_Final.pdf">
+        <svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg>
+        <span>View CV</span>
+      </a>
+      <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>
+      </button>
     </div>
     <div class="ribbon-panel" id="ribbon-panel" hidden>
       <div id="ribbon-panel-content"></div>
@@ -178,12 +178,12 @@
     <span class="formula-text" id="formula-text">= Turning data into opportunities()</span>
   </div>
 
-  <!-- Decorative spreadsheet chrome -->
-  <div class="col-strip" id="col-strip" aria-hidden="true"></div>
-  <div class="row-rail" id="row-rail" aria-hidden="true"></div>
-
   <!-- ================= MAIN ================= -->
   <main id="main">
+    <!-- Decorative spreadsheet chrome (anchored to main so it stays visible) -->
+    <div class="grid-corner" aria-hidden="true"></div>
+    <div class="col-strip" id="col-strip" aria-hidden="true"></div>
+    <div class="row-rail" id="row-rail" aria-hidden="true"></div>
 
     <!-- HERO -->
     <section class="hero section" id="home">
@@ -361,8 +361,8 @@
             <span>Connect on LinkedIn</span>
           </a>
           <a class="btn btn-light-outline" data-cv-link href="cv/Abhishek_Garg_CV_Final.pdf">
-            <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
-            <span>Download CV</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg>
+            <span>View CV</span>
           </a>
         </div>
 
