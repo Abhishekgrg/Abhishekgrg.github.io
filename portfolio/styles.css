@@ -306,46 +306,7 @@ body.compact .section { padding: 64px 0; }
 }
 .brand-dot { color: var(--gold-accent); }
 
-/* Section navigation living inside the green ribbon */
-.ribbon-nav {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  min-width: 0;
-}
-
-.nav-link {
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 10px;
-  border-radius: 7px;
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(247, 243, 234, 0.88);
-  white-space: nowrap;
-  transition: color 0.2s, background-color 0.2s;
-  min-height: 36px;
-}
-.nav-link:hover { color: #fff; background: rgba(255, 255, 255, 0.12); }
-.nav-link.active { color: #fff; font-weight: 700; position: relative; }
-.nav-link.active::after {
-  content: "";
-  position: absolute;
-  left: 10px;
-  right: 10px;
-  bottom: 2px;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--gold-accent);
-}
-
-.ribbon-divider {
-  width: 1px;
-  align-self: stretch;
-  margin: 10px 6px;
-  background: rgba(247, 243, 234, 0.28);
-  flex: none;
-}
+/* Section navigation lives in the fixed bottom sheet-tab bar (Excel style) */
 
 .header-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; flex: none; }
 
@@ -1372,60 +1333,73 @@ body.no-grid .col-strip, body.no-grid .row-rail, body.no-grid .grid-corner { dis
 .is-disabled { opacity: 0.55; cursor: not-allowed; }
 
 /* ------------------------------------------------------------
-   16. Footer / sheet tabs
+   16. Workbook sheet tabs — fixed at the bottom, Excel style
 ------------------------------------------------------------ */
 .site-footer { border-top: 1px solid var(--border); }
 
 .sheet-tabs-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 95;
   background: var(--surface-2);
-  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 16px rgba(16, 42, 42, 0.07);
 }
 
-.sheet-tabs-row { display: flex; }
+.sheet-tabs-row { display: flex; align-items: flex-end; padding: 0 12px; }
 
 .sheet-tabs {
   display: flex;
   align-items: flex-end;
-  gap: 4px;
+  gap: 3px;
   overflow-x: auto;
-  padding: 8px 0 0;
+  padding: 6px 0 0;
   scrollbar-width: none;
 }
 .sheet-tabs::-webkit-scrollbar { display: none; }
 
+/* Classic Excel sheet tab: rounded-top tab sitting on the bar;
+   the active tab lifts off the bar in sheet-white with a green underline */
 .sheet-tab {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   white-space: nowrap;
-  padding: 10px 16px;
-  font-size: 13.5px;
+  padding: 8px 16px 9px;
+  font-size: 12.5px;
   font-weight: 500;
   color: var(--text-secondary);
   border: 1px solid transparent;
   border-bottom: none;
-  border-radius: 10px 10px 0 0;
+  border-radius: 8px 8px 0 0;
   position: relative;
-  min-height: 44px;
+  min-height: 40px;
+  transition: color 0.2s, background-color 0.2s;
 }
 .sheet-tab:hover { color: var(--excel-green); background: var(--soft-green); }
 .sheet-tab.active {
   color: var(--excel-green);
-  font-weight: 600;
+  font-weight: 700;
   background: var(--surface);
-  border-color: var(--border);
+  border-color: var(--grid-line);
 }
 .sheet-tab.active::after {
   content: "";
   position: absolute;
-  left: 12px;
-  right: 12px;
+  left: 10px;
+  right: 10px;
   bottom: 0;
   height: 3px;
   border-radius: 3px 3px 0 0;
   background: var(--excel-green);
 }
 .sheet-tab-add { color: var(--muted); }
+.sheet-tab-add:hover { color: var(--excel-green); background: transparent; }
+
+/* Room for the fixed tab bar */
+body { padding-bottom: 48px; }
 
 .footer-bottom {
   display: flex;
@@ -1492,7 +1466,6 @@ body.no-grid .col-strip, body.no-grid .row-rail, body.no-grid .grid-corner { dis
 }
 
 @media (max-width: 1024px) {
-  .ribbon-nav { display: none; }
   .menu-toggle { display: inline-flex; }
   .about-cards { grid-template-columns: repeat(2, 1fr); }
   .kpi-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1511,9 +1484,11 @@ body.no-grid .col-strip, body.no-grid .row-rail, body.no-grid .grid-corner { dis
 
   /* Clean mobile ribbon: AG. | search | theme | CV | menu (tabs + nav live in the menu) */
   .ribbon { gap: 8px; }
-  .ribbon-tabs, .ribbon-divider { display: none; }
+  .ribbon-tabs { display: none; }
   .search-wrap.open .search-input { width: min(190px, 46vw); }
 
+  /* Mobile keeps the icon bottom-nav instead of the sheet-tab bar */
+  .sheet-tabs-bar { display: none; }
   body { padding-bottom: 66px; }
   .bottom-nav { display: flex; }
   .footer-bottom { padding-bottom: 28px; }

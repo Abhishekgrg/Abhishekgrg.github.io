@@ -97,18 +97,6 @@
       <button class="ribbon-btn" type="button" data-ribbon="view">View</button>
     </div>
 
-    <span class="ribbon-divider" aria-hidden="true"></span>
-
-    <nav class="ribbon-nav" aria-label="Primary">
-      <a class="nav-link" href="#home">Home</a>
-      <a class="nav-link" href="#about">About</a>
-      <a class="nav-link" href="#experience">Experience</a>
-      <a class="nav-link" href="#projects">Projects</a>
-      <a class="nav-link" href="#skills">Skills</a>
-      <a class="nav-link" href="#achievements">Achievements</a>
-      <a class="nav-link" href="#contact">Contact</a>
-    </nav>
-
     <div class="header-actions">
       <div class="search-wrap" id="search-wrap">
         <button class="icon-btn search-toggle" id="search-toggle" type="button" aria-label="Search portfolio sections" aria-expanded="false">
@@ -365,13 +353,15 @@
     </section>
   </main>
 
-  <!-- ================= SHEET TABS / FOOTER ================= -->
-  <footer class="site-footer">
-    <div class="sheet-tabs-bar">
-      <div class="container sheet-tabs-row">
-        <div class="sheet-tabs" id="sheet-tabs"></div>
-      </div>
+  <!-- ================= WORKBOOK SHEET TABS (fixed bottom, like Excel) ================= -->
+  <div class="sheet-tabs-bar" role="navigation" aria-label="Workbook sheets">
+    <div class="sheet-tabs-row">
+      <div class="sheet-tabs" id="sheet-tabs"></div>
     </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
     <div class="container footer-bottom">
       <p>© <span id="year">2026</span> Abhishek Garg · Built like a well-structured workbook.</p>
       <p class="footer-note">Portfolio metaphors — not real financial calculations.</p>
