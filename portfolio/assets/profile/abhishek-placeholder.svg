@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <!-- Neutral placeholder avatar (no real face). Replace by dropping the real
+       photo at assets/profile/abhishek-profile.jpg -->
+  <rect width="300" height="300" fill="#E7F3EC"/>
+  <circle cx="150" cy="112" r="56" fill="#A9CDBA"/>
+  <path d="M50 300c0-66 45-104 100-104s100 38 100 104z" fill="#A9CDBA"/>
+  <rect x="0" y="284" width="300" height="16" fill="#107C41" opacity="0.15"/>
+</svg>
