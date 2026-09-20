@@ -936,7 +936,7 @@
       touchHideTimer = window.setTimeout(function () {
         cell.classList.remove('on');
         touchHideTimer = 0;
-      }, 450);
+      }, 1400);
     }
     window.addEventListener('touchstart', onTouch, { passive: true });
     window.addEventListener('touchmove', onTouch, { passive: true });
