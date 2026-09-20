@@ -926,7 +926,7 @@ body.no-grid .cell-cursor, body.focus-mode .cell-cursor { opacity: 0 !important;
 .status-card em { font-style: normal; color: var(--text-secondary); font-size: 12px; }
 
 /* Doodles */
-.doodle { position: absolute; pointer-events: none; z-index: -1; filter: url(#squiggle); }
+.doodle { position: absolute; pointer-events: none; z-index: -1; }
 .doodle-text {
   font-family: "Segoe Script", "Bradley Hand", "Comic Sans MS", cursive;
   font-size: 19px;
