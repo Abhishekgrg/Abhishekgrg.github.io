@@ -271,6 +271,7 @@
     var tabs = $('#sheet-tabs');
     if (!tabs) { return; }
     var defs = [
+      { label: 'Home', hash: '#home' },
       { label: 'About Me', hash: '#about' },
       { label: 'Experience', hash: '#experience' },
       { label: 'Projects', hash: '#projects' },

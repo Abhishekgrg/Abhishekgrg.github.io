@@ -170,6 +170,9 @@ body.no-grid main::before { display: none; }
   z-index: 1;
 }
 
+/* Home goes all the way to the top (sticky ribbon overlays the hero padding) */
+#home { scroll-margin-top: 0; }
+
 /* Compact mode (Ribbon → View) — visibly tighter rhythm across the page */
 body.compact .section { padding: 56px 0; }
 body.compact main > .section:first-of-type { padding-top: calc(64px + var(--strip-h)); }
