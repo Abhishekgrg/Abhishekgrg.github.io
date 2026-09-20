@@ -759,7 +759,7 @@ body.no-grid .col-strip, body.no-grid .row-rail, body.no-grid .grid-corner { dis
     position: absolute;
     width: var(--col-w);
     height: var(--row-h);
-    border: 2px solid var(--excel-green);
+    border: 2px solid var(--deep-green);
     background: rgba(16, 124, 65, 0.09);
     box-shadow: inset 0 0 0 1px rgba(16, 124, 65, 0.3);
     border-radius: 2px;
