@@ -282,7 +282,9 @@
     tabs.innerHTML = defs.map(function (d) {
       return '<a class="sheet-tab" href="' + d.hash + '" data-sheet="' + d.hash + '">' + esc(d.label) + '</a>';
     }).join('') +
-      '<button class="sheet-tab sheet-tab-add" type="button" title="New sheets coming soon" aria-label="Add sheet (coming soon)">' + icon('plus') + '</button>';
+      '<button class="sheet-tab sheet-tab-add" type="button" title="New sheets coming soon" aria-label="Add sheet (coming soon)">' +
+      '<svg class="icon plus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" aria-hidden="true"><path d="M12 6v12M6 12h12"/></svg>' +
+      '</button>';
     $all('.sheet-tab', tabs).forEach(function (tab) {
       tab.addEventListener('click', function (e) {
         if (tab.dataset.sheet) { e.preventDefault(); goToSection(tab.dataset.sheet); }
