@@ -164,12 +164,41 @@ body.no-grid main::before { display: none; }
 }
 
 .section {
-  padding: 64px 0;
+  padding: 104px 0;
   scroll-margin-top: calc(var(--ribbon-h) + 22px);
   position: relative;
   z-index: 1;
 }
-body.compact .section { padding: 64px 0; }
+
+/* Compact mode (Ribbon → View) — visibly tighter rhythm across the page */
+body.compact .section { padding: 56px 0; }
+body.compact main > .section:first-of-type { padding-top: calc(64px + var(--strip-h)); }
+body.compact .section-head { margin-bottom: 22px; }
+body.compact .section-title { font-size: clamp(24px, 2.6vw, 34px); }
+body.compact .section-sub { margin-top: 6px; }
+body.compact .hero-grid { gap: 28px; }
+body.compact .hero-content h1 { font-size: clamp(30px, 3.4vw, 46px); }
+body.compact .hero-desc { margin-top: 12px; font-size: 17px; }
+body.compact .hero-meta { margin-top: 14px; }
+body.compact .hero-actions { margin-top: 18px; }
+body.compact #profile-img { width: 170px; height: 170px; }
+body.compact .kpi-grid,
+body.compact .about-cards,
+body.compact .tools-grid,
+body.compact .projects-grid,
+body.compact .achievements-grid { gap: 12px; }
+body.compact .kpi-cell, body.compact .about-card { padding: 14px 16px; }
+body.compact .kpi-value { font-size: 30px; }
+body.compact .kpi-icon { width: 34px; height: 34px; margin-bottom: 8px; }
+body.compact .tool-card { padding: 12px 14px; }
+body.compact .project-card, body.compact .award-card { padding: 16px 18px; }
+body.compact .tl-card { padding: 14px 18px; }
+body.compact .timeline { gap: 14px; }
+body.compact .tl-points { gap: 5px; }
+body.compact .about-cards { margin-top: 24px; }
+body.compact .certs-title, body.compact .skills-title { margin-top: 22px; }
+body.compact .contact-body { margin-top: 10px; font-size: 16px; }
+body.compact .contact-actions { margin-top: 18px; }
 
 .section-head {
   display: flex;
