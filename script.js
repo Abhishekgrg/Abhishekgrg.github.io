@@ -794,11 +794,22 @@
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) { return; }
     var main = $('#main');
     if (!main) { return; }
-    var STRIP_H = 24;
     var cell = document.createElement('div');
     cell.className = 'cell-cursor';
     cell.setAttribute('aria-hidden', 'true');
     main.appendChild(cell);
+
+    /* Read geometry from the same CSS variables the gridlines use,
+       so the highlight can never drift from the painted grid */
+    function metrics() {
+      var cs = getComputedStyle(document.documentElement);
+      return {
+        col: parseFloat(cs.getPropertyValue('--col-w')) || 100,
+        row: parseFloat(cs.getPropertyValue('--row-h')) || 28,
+        rail: parseFloat(cs.getPropertyValue('--rail-w')) || 34,
+        strip: parseFloat(cs.getPropertyValue('--strip-h')) || 24
+      };
+    }
 
     var frame = 0;
     var lastEvent = null;
@@ -807,17 +818,22 @@
       frame = 0;
       var e = lastEvent;
       if (!e) { return; }
+      var m = metrics();
       var rect = main.getBoundingClientRect();
       var mx = e.clientX - rect.left;
       var my = e.clientY - rect.top;
-      var col = Math.floor((mx - RAIL_COL_W) / RAIL_COL_W);
-      var row = Math.floor((my - STRIP_H) / RAIL_ROW_H);
-      if (col < 0 || row < 0 || col > 200 || row > 4000 || mx < RAIL_COL_W || my < STRIP_H) {
+      if (mx < m.rail || my < m.strip) {
         cell.classList.remove('on');
         return;
       }
-      cell.style.left = (RAIL_COL_W + col * RAIL_COL_W) + 'px';
-      cell.style.top = (STRIP_H + row * RAIL_ROW_H) + 'px';
+      var col = Math.floor((mx - m.rail) / m.col);
+      var row = Math.floor((my - m.strip) / m.row);
+      if (col > 200 || row > 4000) {
+        cell.classList.remove('on');
+        return;
+      }
+      cell.style.left = (m.rail + col * m.col) + 'px';
+      cell.style.top = (m.strip + row * m.row) + 'px';
       cell.classList.add('on');
     }
 
