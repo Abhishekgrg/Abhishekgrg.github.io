@@ -133,7 +133,13 @@ h1, h2, h3, p { margin: 0; }
 
 /* Spreadsheet gridlines: real intersecting rectangles aligned with the
    column strip (100px wide) and row rail (28px tall), anchored to <main> */
-main { position: relative; }
+main {
+  position: relative;
+  /* The highlight cell may target columns past the right edge of the
+     viewport — clip it instead of growing the horizontal scroll area */
+  overflow-x: hidden;
+  overflow-x: clip;
+}
 main::before {
   content: "";
   position: absolute;
