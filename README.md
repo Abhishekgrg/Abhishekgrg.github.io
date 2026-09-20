@@ -5,8 +5,10 @@ Plain HTML + CSS + vanilla JS. No backend, no build step, no dependencies.
 
 ## Structure
 
+Site lives at the **repo root** (ready for GitHub Pages user site):
+
 ```
-portfolio/
+/
 ├── index.html              # markup + inline SVG icon sprite (Lucide-style)
 ├── styles.css              # theme tokens (light/dark), spreadsheet chrome, responsive layouts
 ├── script.js               # fetches portfolio.json, renders dynamic sections, all interactions
@@ -15,12 +17,11 @@ portfolio/
 │                           # achievements, formulas, search index — edit this, not the code
 ├── assets/
 │   ├── profile/
-│   │   ├── abhishek-profile.jpg        # <- drop the real photo here (exact filename)
-│   │   └── abhishek-placeholder.svg    # neutral avatar shown until the real photo exists
-│   ├── icons/favicon.svg
-│   ├── logos/  doodles/  charts/       # reserved for future assets
+│   │   ├── abhishek-profile.jpg        # real photo, kept exactly as provided
+│   │   └── abhishek-placeholder.svg    # neutral avatar fallback if the photo is missing
+│   └── icons/favicon.svg
 └── cv/
-    └── Abhishek_Garg_CV_Final.pdf      # downloaded by every "Download CV" button
+    └── Abhishek_Garg_CV_Final.pdf      # opened by the "CV" / "Download CV" buttons
 ```
 
 ## Run locally
@@ -28,18 +29,15 @@ portfolio/
 `fetch()` needs HTTP, so serve the folder (opening `index.html` directly via `file://` will show an error banner):
 
 ```
-cd portfolio
 python -m http.server 8000
 # open http://localhost:8000
 ```
 
 ## Publish on GitHub Pages
 
-1. Push this repo to GitHub (the `portfolio/` folder is the site root — either publish the repo
-   with `portfolio` as the pages source folder, or move its contents to the repo root).
-2. Repo → Settings → Pages → deploy from branch.
-3. Fill in the absolute URLs in the commented block in `index.html` `<head>`
-   (canonical + Open Graph) with the final `https://<user>.github.io/<repo>/` address.
+1. Repo → Settings → Pages → deploy from the `portfolio` branch (root).
+2. Uncomment the canonical/Open Graph block in `index.html` `<head>` and set the
+   absolute URLs to `https://abhishekgrg.github.io/`.
 
 ## Configuring
 
