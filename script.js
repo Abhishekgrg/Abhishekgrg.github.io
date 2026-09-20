@@ -791,7 +791,6 @@
      the mouse (fine-pointer devices only, purely decorative)
   ------------------------------------------------------------ */
   function initCellCursor() {
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) { return; }
     var main = $('#main');
     if (!main) { return; }
     var cell = document.createElement('div');
@@ -873,16 +872,18 @@
     }
 
     var frame = 0;
-    var lastEvent = null;
+    var lastPoint = null;
+    var lastInput = 'mouse';
+    var touchHideTimer = 0;
 
     function paint() {
       frame = 0;
-      var e = lastEvent;
-      if (!e) { return; }
+      var p = lastPoint;
+      if (!p) { return; }
       var m = metrics();
       var rect = main.getBoundingClientRect();
-      var mx = e.clientX - rect.left;
-      var my = e.clientY - rect.top;
+      var mx = p.x - rect.left;
+      var my = p.y - rect.top;
       if (mx < m.rail || my < m.strip) {
         cell.classList.remove('on');
         return;
@@ -912,12 +913,40 @@
       }
     }
 
-    window.addEventListener('mousemove', function (e) {
-      lastEvent = e;
+    function schedulePaint() {
       if (!frame) { frame = window.requestAnimationFrame(paint); }
+    }
+
+    window.addEventListener('mousemove', function (e) {
+      lastInput = 'mouse';
+      lastPoint = { x: e.clientX, y: e.clientY };
+      schedulePaint();
     }, { passive: true });
+
+    /* Touch: the highlight follows the finger while dragging the sheet */
+    function onTouch(e) {
+      lastInput = 'touch';
+      if (touchHideTimer) { window.clearTimeout(touchHideTimer); touchHideTimer = 0; }
+      var t = e.touches && e.touches[0];
+      if (!t) { return; }
+      lastPoint = { x: t.clientX, y: t.clientY };
+      schedulePaint();
+    }
+    function onTouchEnd() {
+      touchHideTimer = window.setTimeout(function () {
+        cell.classList.remove('on');
+        touchHideTimer = 0;
+      }, 450);
+    }
+    window.addEventListener('touchstart', onTouch, { passive: true });
+    window.addEventListener('touchmove', onTouch, { passive: true });
+    window.addEventListener('touchend', onTouchEnd, { passive: true });
+    window.addEventListener('touchcancel', onTouchEnd, { passive: true });
+
     window.addEventListener('scroll', function () {
-      cell.classList.remove('on');
+      /* touch scrolling fires alongside touchmove — keep the highlight up;
+         for mouse, hide it until the next movement */
+      if (lastInput === 'mouse') { cell.classList.remove('on'); }
     }, { passive: true });
   }
 
