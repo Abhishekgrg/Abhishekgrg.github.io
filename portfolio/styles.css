@@ -164,7 +164,7 @@ body.no-grid main::before { display: none; }
 }
 
 .section {
-  padding: 104px 0;
+  padding: 64px 0;
   scroll-margin-top: calc(var(--ribbon-h) + 22px);
   position: relative;
   z-index: 1;

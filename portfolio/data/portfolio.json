@@ -11,10 +11,34 @@
     "heroDescription": "I turn complex operational processes into structured, accurate and practical workflows."
   },
   "stats": [
-    { "value": 300, "suffix": "+", "label": "Invoices/month", "icon": "file-text", "cell": "B2" },
-    { "value": 100, "suffix": "%", "label": "SLA adherence", "icon": "shield", "cell": "C2" },
-    { "value": 20, "suffix": "+", "label": "Internal clients", "icon": "users", "cell": "D2" },
-    { "value": 25, "suffix": "%", "label": "Fewer billing discrepancies", "icon": "trending-down", "cell": "E2" }
+    {
+      "value": 300,
+      "suffix": "+",
+      "label": "Invoices/month",
+      "icon": "file-text",
+      "cell": "B2"
+    },
+    {
+      "value": 100,
+      "suffix": "%",
+      "label": "SLA adherence",
+      "icon": "shield",
+      "cell": "C2"
+    },
+    {
+      "value": 20,
+      "suffix": "+",
+      "label": "Internal clients",
+      "icon": "users",
+      "cell": "D2"
+    },
+    {
+      "value": 25,
+      "suffix": "%",
+      "label": "Fewer billing discrepancies",
+      "icon": "trending-down",
+      "cell": "E2"
+    }
   ],
   "about": {
     "heading": "More than just spreadsheets.",
@@ -23,30 +47,90 @@
       "I enjoy solving problems, streamlining processes and making numbers actually make sense."
     ],
     "cards": [
-      { "title": "The Work Me", "body": "Invoices, billing, SOWs, client coordination & operations.", "tag": "Process Driven", "icon": "briefcase" },
-      { "title": "The Numbers Me", "body": "Data-driven, detail-oriented and process focused.", "tag": "Analytical", "icon": "bar-chart" },
-      { "title": "The Human Me", "body": "Coffee-powered problem solver. Professional overthinker. Spreadsheet enthusiast.", "tag": "Balanced", "icon": "coffee" },
-      { "title": "The Future Me", "body": "Continuously learning, growing and building impact.", "tag": "Always Learning", "icon": "sparkles" }
+      {
+        "title": "The Work Me",
+        "body": "Invoices, billing, SOWs, client coordination & operations.",
+        "tag": "Process Driven",
+        "icon": "briefcase"
+      },
+      {
+        "title": "The Numbers Me",
+        "body": "Data-driven, detail-oriented and process focused.",
+        "tag": "Analytical",
+        "icon": "bar-chart"
+      },
+      {
+        "title": "The Human Me",
+        "body": "Coffee-powered problem solver. Professional overthinker. Spreadsheet enthusiast.",
+        "tag": "Balanced",
+        "icon": "coffee"
+      },
+      {
+        "title": "The Future Me",
+        "body": "Continuously learning, growing and building impact.",
+        "tag": "Always Learning",
+        "icon": "sparkles"
+      }
     ]
   },
   "timeline": [
-    { "type": "education", "period": "2018 – 2019", "title": "Commerce with Computer Science", "subtitle": "Higher Secondary Education","logo": "CBSE", "icon": "graduation-cap", "points": [] },
-    { "type": "education", "period": "2019 – 2022", "title": "Bachelor of Commerce", "subtitle": "Accounts & Business Statistics","logo": "MGSU", "icon": "graduation-cap", "points": [] },
-    { "type": "education", "period": "2022 – 2024", "title": "Master of Commerce", "subtitle": "Business Administration & Management","logo": "MGSU", "icon": "graduation-cap", "points": [] },
-    { "type": "job", "period": "Sep 2022 – Feb 2023", "title": "ICICI Bank", "subtitle": "Relationship Manager", "logo": "icici", "icon": "briefcase", "points": [
-      "Client relationship management for 150+ customers",
-      "Achieved 120% of monthly cross-selling target",
-      "95%+ first-call query resolution and 90%+ CSAT",
-      "Increased net banking/UPI usage by 20% among assigned customers",
-      "Priority client handling and trained junior staff"
-    ] },
-    { "type": "job", "period": "Aug 2023 – Present", "title": "NIIT Limited", "subtitle": "Senior AR/AP Coordinator", "logo": "niit", "icon": "briefcase", "points": [
-      "Billing & invoicing across multiple projects — 300+ invoices monthly with 100% accuracy/SLA",
-      "SOW management & vendor coordination — 50+ SOWs tracked, 100% compliance",
-      "Process improvements & discrepancy reduction — 25% fewer billing discrepancies",
-      "Client coordination for 20+ internal clients with 90%+ satisfaction",
-      "Turnaround reduction of 20% through workflow optimization"
-    ] }
+    {
+      "type": "education",
+      "period": "2018 – 2019",
+      "title": "Commerce with Computer Science",
+      "subtitle": "Higher Secondary Education",
+      "logo": "CBSE",
+      "icon": "graduation-cap",
+      "points": []
+    },
+    {
+      "type": "education",
+      "period": "2019 – 2022",
+      "title": "Bachelor of Commerce",
+      "subtitle": "Accounts & Business Statistics",
+      "logo": "MGSU",
+      "icon": "graduation-cap",
+      "points": []
+    },
+    {
+      "type": "education",
+      "period": "2022 – 2024",
+      "title": "Master of Commerce",
+      "subtitle": "Business Administration & Management",
+      "logo": "MGSU",
+      "icon": "graduation-cap",
+      "points": []
+    },
+    {
+      "type": "job",
+      "period": "Sep 2022 – Feb 2023",
+      "title": "ICICI Bank",
+      "subtitle": "Relationship Manager",
+      "logo": "icici",
+      "icon": "briefcase",
+      "points": [
+        "Client relationship management for 150+ customers",
+        "Achieved 120% of monthly cross-selling target",
+        "95%+ first-call query resolution and 90%+ CSAT",
+        "Increased net banking/UPI usage by 20% among assigned customers",
+        "Priority client handling and trained junior staff"
+      ]
+    },
+    {
+      "type": "job",
+      "period": "Aug 2023 – Present",
+      "title": "NIIT Limited",
+      "subtitle": "Senior AR/AP Coordinator",
+      "logo": "niit",
+      "icon": "briefcase",
+      "points": [
+        "Billing & invoicing across multiple projects — 300+ invoices monthly with 100% accuracy/SLA",
+        "SOW management & vendor coordination — 50+ SOWs tracked, 100% compliance",
+        "Process improvements & discrepancy reduction — 25% fewer billing discrepancies",
+        "Client coordination for 20+ internal clients with 90%+ satisfaction",
+        "Turnaround reduction of 20% through workflow optimization"
+      ]
+    }
   ],
   "certifications": [
     "PG Program in Relationship Management – NIIT IFBI",
@@ -57,18 +141,30 @@
       "title": "Multi-Project Invoicing Workflow Optimization",
       "description": "Streamlined invoicing across multiple projects, reducing manual work and discrepancies.",
       "tag": "Process Improvement",
-      "impact": { "value": "25%", "label": "Discrepancies", "direction": "down" },
+      "impact": {
+        "value": "25%",
+        "label": "Discrepancies",
+        "direction": "down"
+      },
       "diagram": "workflow"
     },
     {
       "title": "Centralized SOW Documentation & Vendor Tracking",
       "description": "Implemented a structured tracking system for SOWs and vendor agreements.",
       "tag": "Operations",
-      "outcomes": ["Better tracking", "Faster turnaround", "Improved compliance"]
+      "outcomes": [
+        "Better tracking",
+        "Faster turnaround",
+        "Improved compliance"
+      ]
     }
   ],
   "toolkit": [
-    { "name": "Microsoft Excel", "category": "Reporting & Analysis", "icon": "table" },
+    {
+      "name": "Microsoft Excel",
+      "category": "Reporting & Analysis",
+      "icon": "table"
+    },
     { "name": "Tally", "category": "Accounting", "icon": "calculator" },
     { "name": "BUSY", "category": "Accounting", "icon": "calculator" },
     { "name": "Finacle", "category": "Banking System", "icon": "database" },
@@ -76,14 +172,38 @@
     { "name": "Symphony", "category": "Project Management", "icon": "workflow" }
   ],
   "skills": [
-    "Client Relationship Management", "Invoicing / Billing", "Customer Feedback",
-    "Regulatory Compliance", "SLA / Time Management", "Cross-functional Collaboration",
-    "Process Optimization", "Data Analysis / Financial Reporting", "Problem Solving",
-    "Microsoft Excel", "Finacle", "TeckNowPark", "Symphony", "Tally", "Busy"
+    "Client Relationship Management",
+    "Invoicing / Billing",
+    "Customer Feedback",
+    "Regulatory Compliance",
+    "SLA / Time Management",
+    "Cross-functional Collaboration",
+    "Process Optimization",
+    "Data Analysis / Financial Reporting",
+    "Problem Solving",
+    "Microsoft Excel",
+    "Finacle",
+    "TeckNowPark",
+    "Symphony",
+    "Tally",
+    "Busy"
   ],
   "achievements": [
-    { "title": "Star of the Month", "date": "May 2024", "description": "Recognized for consistent performance and contribution." },
-    { "title": "Star of the Month", "date": "May 2025", "description": "Recognized for consistent performance and contribution." }
+    {
+      "title": "Star of the Month",
+      "date": "May 2024",
+      "description": "Awarded for consistent performance and dedication."
+    },
+    {
+      "title": "Star of the Month",
+      "date": "May 2025",
+      "description": "Awarded for process excellence and strong ownership."
+    },
+    {
+      "title": "Star of the Month",
+      "date": "June 2026",
+      "description": "Awarded for exceptional contribution and business impact."
+    }
   ],
   "formulas": {
     "home": "= Turning data into opportunities()",
@@ -102,12 +222,40 @@
     { "formula": "=MAX(Impact)", "hash": "#projects" }
   ],
   "searchIndex": [
-    { "title": "About", "hash": "#about", "keywords": "about profile bio spreadsheets work me" },
-    { "title": "Experience — NIIT Limited", "hash": "#experience", "keywords": "niit experience ar ap coordinator billing invoicing sow journey" },
-    { "title": "Experience — ICICI Bank", "hash": "#experience", "keywords": "icici bank relationship manager experience journey" },
-    { "title": "Projects", "hash": "#projects", "keywords": "projects invoicing workflow optimization sow vendor tracking solutions" },
-    { "title": "Skills & Toolkit", "hash": "#skills", "keywords": "skills excel tally busy finacle tecknowpark symphony toolkit tools" },
-    { "title": "Achievements — Star of the Month", "hash": "#achievements", "keywords": "achievements star of the month awards milestones trophy" },
-    { "title": "Contact", "hash": "#contact", "keywords": "contact email phone linkedin connect question opportunity" }
+    {
+      "title": "About",
+      "hash": "#about",
+      "keywords": "about profile bio spreadsheets work me"
+    },
+    {
+      "title": "Experience — NIIT Limited",
+      "hash": "#experience",
+      "keywords": "niit experience ar ap coordinator billing invoicing sow journey"
+    },
+    {
+      "title": "Experience — ICICI Bank",
+      "hash": "#experience",
+      "keywords": "icici bank relationship manager experience journey"
+    },
+    {
+      "title": "Projects",
+      "hash": "#projects",
+      "keywords": "projects invoicing workflow optimization sow vendor tracking solutions"
+    },
+    {
+      "title": "Skills & Toolkit",
+      "hash": "#skills",
+      "keywords": "skills excel tally busy finacle tecknowpark symphony toolkit tools"
+    },
+    {
+      "title": "Achievements — Star of the Month",
+      "hash": "#achievements",
+      "keywords": "achievements star of the month awards milestones trophy"
+    },
+    {
+      "title": "Contact",
+      "hash": "#contact",
+      "keywords": "contact email phone linkedin connect question opportunity"
+    }
   ]
 }
