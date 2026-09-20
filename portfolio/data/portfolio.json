@@ -87,6 +87,7 @@
   ],
   "formulas": {
     "home": "= Turning data into opportunities()",
+    "kpis": "= AVERAGE(SLA)",
     "about": "= PROFILE(Abhishek)",
     "experience": "= SUM(Experience)",
     "projects": "= Improve(Process)",

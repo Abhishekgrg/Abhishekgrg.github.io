@@ -474,6 +474,7 @@ body.compact .section { padding: 56px 0; }
   font-weight: 500;
   color: rgba(247, 243, 234, 0.92);
   border-radius: 6px;
+  white-space: nowrap;
   transition: background-color 0.2s, color 0.2s;
 }
 .ribbon-btn:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
@@ -1438,6 +1439,9 @@ body.focus-mode .doodle, body.focus-mode .mini-chart { display: none; }
 
 @media (max-width: 767px) {
   .container { width: min(1180px, 100% - 32px); }
+
+  /* Spec mobile header: AG. | Theme | CV | Menu — the search lives in the menu overlay */
+  .search-wrap { display: none; }
 
   body { padding-bottom: 66px; }
   .bottom-nav { display: flex; }

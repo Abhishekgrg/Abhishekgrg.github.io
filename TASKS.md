@@ -62,15 +62,24 @@ Git is used for local commit tracking so any breaking change can be reverted. Pu
 - [x] No fabricated brand logos: neutral SVG symbols in containers with readable names
 
 ## Task 7 — Verification (spec §32)
-- [ ] Local static server + real browser checks: desktop, 320px, 390px, 430px
-- [ ] portfolio.json loads correctly over HTTP (fetch path verified)
-- [ ] Dark mode, all navigation, CV download, image loading, SVG rendering
-- [ ] Browser console clean, all relative paths, GitHub Pages compatibility
-- [ ] Visual screenshot review at each breakpoint
+- [x] Local static server + real browser checks: desktop 1280px, mobile 320px, 390px, 430px
+- [x] portfolio.json loads correctly over HTTP (fetch path verified)
+- [x] Dark mode, all navigation, CV download (HTTP 200), image loading (placeholder fallback), SVG rendering
+- [x] Browser console clean (zero errors), all relative paths, GitHub Pages compatibility (static, no build)
+- [x] Visual screenshot review at each breakpoint
+- [x] Ribbon actions (File/Home/Insert/Page Layout/Formulas/Data/Review/View), Ctrl+K search focus,
+      KPI counters, formula-bar sync, sheet tabs, bottom nav, mobile menu, hash deep-links (#about)
+- [x] Known intentional 404: `assets/profile/abhishek-profile.jpg` (real photo not yet supplied —
+      neutral placeholder avatar shown automatically; drop the real file in and it takes over)
 
 ## Task 8 — Fix & polish loop
-- [ ] Fix every issue found in verification, re-verify until clean
-- [ ] Final commit with clean working tree
+- [x] Fixed: brand-mark HTML escaping (raw `<span>` visible in header)
+- [x] Fixed: 8 × `undefined` column-strip letters beyond the 16-letter array
+- [x] Fixed: mobile menu overlay visible in a11y tree despite `[hidden]` (display overrode it)
+- [x] Fixed: 27px horizontal overflow on mobile header (search hidden ≤767px per spec mobile header)
+- [x] Fixed: ribbon buttons wrapping to two lines on ≤320px (`white-space: nowrap`)
+- [x] Added `= AVERAGE(SLA)` formula for the KPI section
+- [x] Final commit with clean working tree
 
 ## Commit log
 Tracked in git (`git log` in this repo). One commit per task/stable state; revert instead of patch-forward
