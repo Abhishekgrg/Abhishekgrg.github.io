@@ -70,7 +70,27 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  /* Excel-themed scrollbar (Firefox) */
+  scrollbar-width: thin;
+  scrollbar-color: var(--excel-green) var(--surface-2);
 }
+
+/* Excel-themed scrollbar (Chromium/Edge/Safari) — replaces the default look;
+   scrolling behaviour is untouched */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track {
+  background: var(--surface-2);
+  border-left: 1px solid var(--grid-line);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--excel-green), var(--deep-green));
+  border-radius: 8px;
+  border: 2px solid var(--surface-2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--deep-green), var(--dark-green));
+}
+::-webkit-scrollbar-corner { background: var(--surface-2); }
 
 body {
   margin: 0;
