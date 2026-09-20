@@ -102,7 +102,9 @@
     var avail = $('#meta-availability-text');
     if (avail) { avail.textContent = p.availability; }
     var brand = $('#brand-mark');
-    if (brand) { brand.innerHTML = esc(p.initials.replace('.', '') + '<span class="brand-dot">.</span>'); }
+    if (brand) {
+      brand.innerHTML = esc(p.initials.replace(/\./g, '')) + '<span class="brand-dot">.</span>';
+    }
     var statusCompany = $('#status-company');
     if (statusCompany) { statusCompany.textContent = 'Currently at ' + p.company; }
     var statusLoc = $('#status-location');
@@ -717,7 +719,7 @@
     var strip = $('#col-strip');
     if (strip) {
       var letters = '';
-      for (var i = 0; i < 24; i++) { letters += '<span>' + COLS[i] + '</span>'; }
+      for (var i = 0; i < COLS.length; i++) { letters += '<span>' + COLS[i] + '</span>'; }
       strip.innerHTML = letters;
     }
     var rail = $('#row-rail');
