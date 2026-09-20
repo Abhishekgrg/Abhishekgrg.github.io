@@ -3,6 +3,11 @@
 Source spec: `Abhishek_Garg_Excel_Theme_Portfolio_Master_Prompt.md`
 Git is used for local commit tracking so any breaking change can be reverted. Publishing happens later.
 
+> **Target platform (confirmed):** the site will be published to **GitHub Pages (`github.io`)**.
+> Design constraints that follow: static HTML/CSS/vanilla JS only, no backend, all asset paths
+> relative (not absolute/root-anchored), and the canonical/Open Graph absolute URLs get their final
+> `https://<user>.github.io/<repo>/` value in one obvious place at publish time.
+
 > **Missing inputs (as of start):** profile photograph, CV PDF, and Excel reference image were not
 > present in the workspace. The site is built with placeholder-safe asset handling: the HTML
 > references `assets/profile/abhishek-profile.jpg` and `cv/Abhishek_Garg_CV_Final.pdf`; a neutral
@@ -10,22 +15,26 @@ Git is used for local commit tracking so any breaking change can be reverted. Pu
 > fill the gap until the owner supplies the real files.
 
 ## Task 1 — Repo & structure setup
-- [x] `git init`, `.gitignore`, folder skeleton (`portfolio/`, `assets/…`, `cv/`)
+- [x] `git init`, `.gitignore`, folder skeleton (`portfolio/`, `assets/…`, `cv/`, `data/`)
 - [x] This TASKS.md
 
 ## Task 2 — Data layer (spec §24, §25, §26, §27)
 - [x] `SITE_CONFIG` (email, phone, empty configurable `linkedinUrl`)
-- [x] `portfolioData` central object: profile, stats (only the 4 documented KPIs), experience,
-      education, certifications, skills, achievements (only the 2 documented awards), projects,
-      toolkit, search index
-- [x] Dynamic sections (KPIs, timeline, projects, toolkit, achievements) rendered from data,
-      not hardcoded into markup
+- [x] All content values (the 4 documented KPIs, experience, education, certifications, skills,
+      the 2 documented awards, projects, toolkit, search index) stored as **hardcoded static
+      values inside a configurable JSON file** in the code structure
+      (`portfolio/data/portfolio.json`) — easy to edit without touching code
+- [x] `script.js` fetches that JSON at load and renders KPIs, timeline, projects, toolkit,
+      achievements, about cards from it — content never hardcoded into markup
+- [x] Caveat handled: `fetch()` of a local JSON only works over HTTP — local testing runs through
+      a static server, and it works as-is on GitHub Pages (documented in README)
 
 ## Task 3 — index.html
 - [x] Semantic structure: header → ribbon → formula bar → grid → hero → KPIs → about →
       journey → projects → toolkit → achievements → contact → sheet tabs/footer
 - [x] SVG sprite (Lucide-style, 1.5–2px stroke, no emojis), aria-labels on icon buttons
-- [x] SEO: title, description, canonical, Open Graph, favicon (AG. green/cream/gold)
+- [x] SEO: title, description, canonical, Open Graph, favicon (AG. green/cream/gold);
+      absolute URLs templated for the final `github.io` address (single place to fill at publish)
 - [x] Spreadsheet column-letter strip + decorative grid backdrop
 
 ## Task 4 — styles.css
@@ -53,7 +62,8 @@ Git is used for local commit tracking so any breaking change can be reverted. Pu
 - [x] No fabricated brand logos: neutral SVG symbols in containers with readable names
 
 ## Task 7 — Verification (spec §32)
-- [ ] Local server + real browser checks: desktop, 320px, 390px, 430px
+- [ ] Local static server + real browser checks: desktop, 320px, 390px, 430px
+- [ ] portfolio.json loads correctly over HTTP (fetch path verified)
 - [ ] Dark mode, all navigation, CV download, image loading, SVG rendering
 - [ ] Browser console clean, all relative paths, GitHub Pages compatibility
 - [ ] Visual screenshot review at each breakpoint
