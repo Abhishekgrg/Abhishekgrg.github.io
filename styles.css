@@ -926,7 +926,7 @@ body.no-grid .cell-cursor, body.focus-mode .cell-cursor { opacity: 0 !important;
 .status-card em { font-style: normal; color: var(--text-secondary); font-size: 12px; }
 
 /* Doodles */
-.doodle { position: absolute; pointer-events: none; z-index: -1; }
+.doodle { position: absolute; pointer-events: none; z-index: -1; filter: url(#squiggle); }
 .doodle-text {
   font-family: "Segoe Script", "Bradley Hand", "Comic Sans MS", cursive;
   font-size: 19px;
@@ -943,9 +943,9 @@ body.no-grid .cell-cursor, body.focus-mode .cell-cursor { opacity: 0 !important;
 
 .doodle-hero { width: 220px; top: -66px; right: -6px; }
 .doodle-about { width: 250px; top: 46px; right: 12px; }
-.doodle-exp { width: 235px; top: 84px; right: 30px; transform: rotate(-2deg); }
-.doodle-skills { width: 210px; top: 10px; right: 30px; transform: rotate(2deg); }
-.doodle-contact { width: 190px; top: 36px; right: 24px; position: absolute; }
+.doodle-exp { width: 235px; top: 110px; left: 3vw; right: auto; transform: rotate(-2deg); }
+.doodle-skills { width: 210px; top: 16px; left: 55%; right: auto; transform: rotate(2deg); }
+.doodle-contact { width: 190px; top: auto; bottom: 70px; right: 40px; position: absolute; }
 
 /* ------------------------------------------------------------
    9. KPI row
@@ -1602,12 +1602,12 @@ body { padding-bottom: 48px; }
   .status-card { padding: 8px 12px; font-size: 12px; gap: 8px; }
   .status-card strong { font-size: 12px; }
   .status-card em { font-size: 11px; }
-  /* Doodles stay visible on mobile — smaller, tucked top-right, behind text */
+  /* Doodles stay visible on mobile — smaller, scattered, behind text */
   .doodle { opacity: 0.75; }
   .doodle-hero { width: 120px; top: -26px; right: 0; }
   .doodle-about { width: 130px; top: -4px; right: 0; }
-  .doodle-exp { width: 130px; top: -2px; right: 0; }
-  .doodle-skills { width: 120px; top: -2px; right: 0; }
+  .doodle-exp { width: 130px; top: -2px; left: 0; right: auto; }
+  .doodle-skills { width: 120px; top: -2px; left: 45%; right: auto; }
   .doodle-contact { width: 140px; top: 6px; right: 8px; }
 
   .section { padding: 36px 0; }
