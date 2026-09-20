@@ -966,6 +966,10 @@
     initMobileMenu();
     initGridRails();
     initCellCursor();
+    /* Respect reduced motion: stop the doodle squiggle animation */
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('#squiggle animate').forEach(function (a) { a.remove(); });
+    }
     setActiveSection('home');
   }
 

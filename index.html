@@ -19,7 +19,7 @@
   <meta property="og:description" content="Portfolio of Abhishek Garg, Senior AR/AP Coordinator specializing in billing, operations, SOW management and client coordination.">
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
-  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=8">
 
   <script>
     /* Set theme before first paint to avoid a flash */
@@ -65,10 +65,12 @@
     <symbol id="i-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.58a2 2 0 0 1-1.53.22l-.17-.06a2 2 0 0 0-2.28.62l-.28.28a2 2 0 0 0-.62 2.28l.06.17a2 2 0 0 1-.22 1.53l-.58.43a2 2 0 0 0-1.73 1v.44a2 2 0 0 0 2 2h.18a2 2 0 0 1 1.73 1l.58.43a2 2 0 0 1 .22 1.53l-.06.17a2 2 0 0 0 .62 2.28l.28.28a2 2 0 0 0 2.28.62l.17-.06a2 2 0 0 1 1.53.22l.43.58a2 2 0 0 0 1 1.73h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.58a2 2 0 0 1 1.53-.22l.17.06a2 2 0 0 0 2.28-.62l.28-.28a2 2 0 0 0 .62-2.28l-.06-.17a2 2 0 0 1 .22-1.53l.58-.43a2 2 0 0 0 1.73-1v-.44a2 2 0 0 0-2-2h-.18a2 2 0 0 1-1.73-1l-.58-.43a2 2 0 0 1-.22-1.53l.06-.17a2 2 0 0 0-.62-2.28l-.28-.28a2 2 0 0 0-2.28-.62l-.17.06a2 2 0 0 1-1.53-.22l-.43-.58a2 2 0 0 0-1-1.73z"/><circle cx="12" cy="12" r="3"/></symbol>
     <symbol id="i-sigma" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 7V4H6l6 8-6 8h12v-3"/></symbol>
     <symbol id="i-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></symbol>
-    <!-- Turbulent squiggle filter: gives doodles a hand-drawn wobble -->
+    <!-- Turbulent squiggle filter: gives doodles a hand-drawn wobble that gently animates -->
     <filter id="squiggle" x="-20%" y="-20%" width="140%" height="140%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.05" numOctaves="2" seed="7" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.016 0.045" numOctaves="2" seed="7" result="noise">
+        <animate attributeName="baseFrequency" dur="5s" values="0.016 0.045;0.028 0.032;0.016 0.045" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G"/>
     </filter>
     <symbol id="i-filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></symbol>
     <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
@@ -228,6 +230,10 @@
     <!-- KPI ROW -->
     <section class="kpi-section section" id="kpis" aria-label="Key metrics">
       <div class="container">
+        <svg class="doodle doodle-kpi" viewBox="0 0 220 60" aria-hidden="true">
+          <text x="10" y="26" class="doodle-text">= GROWTH(effort)</text>
+          <path class="doodle-line" d="M12 40 C 60 48, 120 34, 185 42"/>
+        </svg>
         <div class="kpi-grid" id="kpi-grid"></div>
       </div>
     </section>
@@ -296,6 +302,12 @@
           </a>
         </div>
         <div class="projects-grid" id="projects-grid"></div>
+
+        <svg class="doodle doodle-projects" viewBox="0 0 240 80" aria-hidden="true">
+          <text x="8" y="26" class="doodle-text">Challenges in.</text>
+          <text x="30" y="54" class="doodle-text">Solutions out.</text>
+          <path class="doodle-line" d="M12 66 C 70 74, 140 60, 210 70"/>
+        </svg>
       </div>
     </section>
 
@@ -332,6 +344,12 @@
             <h2 class="section-title">Milestones<br>that motivate.</h2>
           </div>
         </div>
+
+        <svg class="doodle doodle-ach" viewBox="0 0 200 70" aria-hidden="true">
+          <text x="12" y="28" class="doodle-text">Star behavior.</text>
+          <path class="doodle-line" d="M14 42 C 60 50, 120 36, 175 44"/>
+        </svg>
+
         <div class="achievements-grid" id="achievements-grid"></div>
       </div>
     </section>
@@ -406,6 +424,6 @@
     </button>
   </nav>
 
-  <script src="script.js?v=7"></script>
+  <script src="script.js?v=9"></script>
 </body>
 </html>

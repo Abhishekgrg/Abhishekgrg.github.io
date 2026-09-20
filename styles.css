@@ -942,9 +942,12 @@ body.no-grid .cell-cursor, body.focus-mode .cell-cursor { opacity: 0 !important;
 }
 
 .doodle-hero { width: 220px; top: -66px; right: -6px; }
+.doodle-kpi { width: 190px; top: 34px; right: 3vw; }
 .doodle-about { width: 250px; top: 46px; right: 12px; }
 .doodle-exp { width: 235px; top: 110px; left: 3vw; right: auto; transform: rotate(-2deg); }
+.doodle-projects { width: 210px; top: 16px; left: 46%; right: auto; transform: rotate(-2deg); }
 .doodle-skills { width: 210px; top: 16px; left: 55%; right: auto; transform: rotate(2deg); }
+.doodle-ach { width: 180px; top: 12px; left: 3vw; transform: rotate(1.5deg); }
 .doodle-contact { width: 190px; top: auto; bottom: 70px; right: 40px; position: absolute; }
 
 /* ------------------------------------------------------------
@@ -1605,9 +1608,12 @@ body { padding-bottom: 48px; }
   /* Doodles stay visible on mobile — smaller, scattered, behind text */
   .doodle { opacity: 0.75; }
   .doodle-hero { width: 120px; top: -26px; right: 0; }
+  .doodle-kpi { width: 120px; top: -6px; right: 0; }
   .doodle-about { width: 130px; top: -4px; right: 0; }
   .doodle-exp { width: 130px; top: -2px; left: 0; right: auto; }
+  .doodle-projects { width: 120px; top: -2px; left: 45%; right: auto; }
   .doodle-skills { width: 120px; top: -2px; left: 45%; right: auto; }
+  .doodle-ach { width: 110px; top: -4px; left: 0; right: auto; }
   .doodle-contact { width: 140px; top: 6px; right: 8px; }
 
   .section { padding: 36px 0; }
