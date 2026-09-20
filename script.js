@@ -787,6 +787,50 @@
   }
 
   /* ------------------------------------------------------------
+     Playful Excel cell cursor — highlights the grid cell under
+     the mouse (fine-pointer devices only, purely decorative)
+  ------------------------------------------------------------ */
+  function initCellCursor() {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) { return; }
+    var main = $('#main');
+    if (!main) { return; }
+    var STRIP_H = 24;
+    var cell = document.createElement('div');
+    cell.className = 'cell-cursor';
+    cell.setAttribute('aria-hidden', 'true');
+    main.appendChild(cell);
+
+    var frame = 0;
+    var lastEvent = null;
+
+    function paint() {
+      frame = 0;
+      var e = lastEvent;
+      if (!e) { return; }
+      var rect = main.getBoundingClientRect();
+      var mx = e.clientX - rect.left;
+      var my = e.clientY - rect.top;
+      var col = Math.floor((mx - RAIL_COL_W) / RAIL_COL_W);
+      var row = Math.floor((my - STRIP_H) / RAIL_ROW_H);
+      if (col < 0 || row < 0 || col > 200 || row > 4000 || mx < RAIL_COL_W || my < STRIP_H) {
+        cell.classList.remove('on');
+        return;
+      }
+      cell.style.left = (RAIL_COL_W + col * RAIL_COL_W) + 'px';
+      cell.style.top = (STRIP_H + row * RAIL_ROW_H) + 'px';
+      cell.classList.add('on');
+    }
+
+    window.addEventListener('mousemove', function (e) {
+      lastEvent = e;
+      if (!frame) { frame = window.requestAnimationFrame(paint); }
+    }, { passive: true });
+    window.addEventListener('scroll', function () {
+      cell.classList.remove('on');
+    }, { passive: true });
+  }
+
+  /* ------------------------------------------------------------
      Init everything
   ------------------------------------------------------------ */
   function initAll() {
@@ -799,6 +843,7 @@
     initTheme();
     initMobileMenu();
     initGridRails();
+    initCellCursor();
     setActiveSection('home');
   }
 

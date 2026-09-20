@@ -635,6 +635,9 @@ body.compact .contact-actions { margin-top: 18px; }
    7. Formula bar + spreadsheet chrome
 ------------------------------------------------------------ */
 .formula-bar {
+  position: sticky;
+  top: var(--ribbon-h);
+  z-index: 90;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -642,6 +645,7 @@ body.compact .contact-actions { margin-top: 18px; }
   min-height: 40px;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(16, 42, 42, 0.06);
   font-family: "Cascadia Code", Consolas, "SF Mono", Menlo, monospace;
   font-size: 13px;
 }
@@ -667,23 +671,24 @@ body.compact .contact-actions { margin-top: 18px; }
   text-overflow: ellipsis;
 }
 
-/* Corner cell where the column strip and row rail meet (Excel select-all box) */
+/* Corner cell where the column strip and row rail meet (Excel select-all box).
+   Fixed below the sticky ribbon + formula bar so the column headers stay visible. */
 .grid-corner {
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: calc(var(--ribbon-h) + 40px);
   left: 0;
   width: var(--rail-w);
   height: var(--strip-h);
   background: var(--surface-2);
   border-right: 1px solid var(--grid-line);
   border-bottom: 1px solid var(--grid-line);
-  z-index: 2;
+  z-index: 5;
 }
 
-/* Column letters strip — top of <main>, starts right of the corner cell */
+/* Column letters strip — fixed under the formula bar, right of the corner cell */
 .col-strip {
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: calc(var(--ribbon-h) + 40px);
   left: var(--rail-w);
   right: 0;
   height: var(--strip-h);
@@ -691,7 +696,7 @@ body.compact .contact-actions { margin-top: 18px; }
   overflow: hidden;
   border-bottom: 1px solid var(--grid-line);
   background: var(--surface-2);
-  z-index: 2;
+  z-index: 5;
 }
 .col-strip span {
   width: var(--col-w);
@@ -741,6 +746,34 @@ body.focus-mode .col-strip, body.focus-mode .row-rail, body.focus-mode .grid-cor
 body.focus-mode main > .section:first-of-type { padding-top: 104px; }
 body.focus-mode .doodle, body.focus-mode .mini-chart { display: none; }
 body.no-grid .col-strip, body.no-grid .row-rail, body.no-grid .grid-corner { display: none; }
+
+/* ------------------------------------------------------------
+   7b. Playful Excel cell cursor (fine-pointer devices only)
+------------------------------------------------------------ */
+@media (hover: hover) and (pointer: fine) {
+  main {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cpath d='M11 2h6v9h9v6h-9v9h-6v-9H2v-6h9z' fill='%23ffffff' stroke='%23102A2A' stroke-width='2.5'/%3E%3C/svg%3E") 14 14, cell;
+  }
+
+  .cell-cursor {
+    position: absolute;
+    width: var(--col-w);
+    height: var(--row-h);
+    border: 2px solid var(--excel-green);
+    background: rgba(16, 124, 65, 0.09);
+    box-shadow: inset 0 0 0 1px rgba(16, 124, 65, 0.3);
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+  .cell-cursor.on { opacity: 1; }
+  body.no-grid .cell-cursor, body.focus-mode .cell-cursor { opacity: 0 !important; }
+}
+@media (hover: none), (pointer: coarse) {
+  .cell-cursor { display: none; }
+}
 
 /* ------------------------------------------------------------
    8. Hero
